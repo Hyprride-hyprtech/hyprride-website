@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HYPRRIDE — Bike Rentals in Madhapur, Hyderabad</title>
+<meta name="description" content="Clean, serviced scooters and motorcycles on rent in Madhapur, Hyderabad. Helmet included, transparent pricing, instant WhatsApp booking. #ridewithhyprride">
+<link rel="canonical" href="https://hyprride.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HYPRRIDE Bike Rentals">
+<meta property="og:title" content="HYPRRIDE — Bike Rentals in Madhapur, Hyderabad">
+<meta property="og:description" content="Clean, serviced scooters and motorcycles on rent. Helmet included, transparent pricing, instant WhatsApp booking.">
+<meta property="og:url" content="https://hyprride.com/">
+<meta property="og:image" content="https://hyprride.com/hero-smoke.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23e63b3b'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='26' font-weight='800' fill='%23120d0d' text-anchor='middle'%3EHR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=3">
+<link rel="preload" as="image" href="hero-smoke.jpg?v=5">
+<link rel="preload" as="image" href="float-apache.webp">
+<link rel="preload" as="image" href="float-rayzr.webp">
+<link rel="preload" as="image" href="float-jupiter.webp">
+<link rel="preload" as="image" href="float-ntorq.webp">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<!-- ══════════════ SVG LIBRARY ══════════════ -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <!-- WhatsApp -->
+  <symbol id="ic-wa" viewBox="0 0 24 24">
+    <path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M8.8 8.4c.2-.5.5-.5.8-.5h.6c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.2-.1.3 0 .5.6 1 1.5 1.8 2.6 2.3.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.6-.1l1.6.8c.3.1.4.3.4.5v.7c0 .3-.2.6-.5.7-.6.3-1.4.4-2.4 0a9 9 0 0 1-4.6-4.2c-.6-1-.6-1.9-.3-2.6z" fill="currentColor"/>
+  </symbol>
+  <!-- Calendar / booking -->
+  <symbol id="ic-cal" viewBox="0 0 24 24">
+    <rect x="3.5" y="5" width="17" height="15.5" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M3.5 9.5h17M8 3v3.5M16 3v3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="m9.2 14.6 2 2 3.6-3.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Phone -->
+  <symbol id="ic-phone" viewBox="0 0 24 24">
+    <path d="M7.1 3.8 9 3.4c.5-.1.9.1 1.1.6l1.1 2.6c.2.4.1.9-.3 1.2l-1.3 1.1a12.6 12.6 0 0 0 5.5 5.5l1.1-1.3c.3-.4.8-.5 1.2-.3l2.6 1.1c.5.2.7.6.6 1.1l-.4 1.9c-.1.6-.6 1-1.2 1C10.6 18 6 13.4 5.1 5c-.1-.6.4-1.1 1-1.2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" transform="rotate(8 12 12)"/>
+  </symbol>
+  <!-- Mail -->
+  <symbol id="ic-mail" viewBox="0 0 24 24">
+    <rect x="3" y="5.5" width="18" height="13" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="m4.5 8 7.5 5 7.5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Pin -->
+  <symbol id="ic-pin" viewBox="0 0 24 24">
+    <path d="M12 21s-6.5-5.3-6.5-10a6.5 6.5 0 0 1 13 0c0 4.7-6.5 10-6.5 10z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="12" cy="10.6" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  </symbol>
+  <!-- Clock -->
+  <symbol id="ic-clock" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </symbol>
+  <!-- Instagram -->
+  <symbol id="ic-ig" viewBox="0 0 24 24">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="17.2" cy="6.8" r="1.3" fill="currentColor"/>
+  </symbol>
+  <!-- Shield / helmet -->
+  <symbol id="ic-shield" viewBox="0 0 24 24">
+    <path d="M12 3 5 6v5c0 4.6 3 8.4 7 10 4-1.6 7-5.4 7-10V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="m8.8 11.8 2.2 2.2 4.2-4.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Rupee / pricing -->
+  <symbol id="ic-rupee" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M9 7.8h6M9 10.8h6M9.2 7.8c2.3 0 3.5 1 3.5 2.6s-1.2 2.6-3.5 2.6l4.6 3.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Bolt -->
+  <symbol id="ic-bolt" viewBox="0 0 24 24">
+    <path d="M13 2.5 5.5 13H11l-1 8.5L18.5 11H13z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Eye -->
+  <symbol id="ic-eye" viewBox="0 0 24 24">
+    <path d="M2.5 12S6 5.8 12 5.8 21.5 12 21.5 12 18 18.2 12 18.2 2.5 12 2.5 12z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  </symbol>
+  <!-- Headset / support -->
+  <symbol id="ic-support" viewBox="0 0 24 24">
+    <path d="M4.5 13v-1.5a7.5 7.5 0 0 1 15 0V13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <rect x="3" y="12.5" width="4" height="6" rx="2" fill="currentColor"/>
+    <rect x="17" y="12.5" width="4" height="6" rx="2" fill="currentColor"/>
+    <path d="M19 18.5c0 2-2 2.7-5 2.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </symbol>
+  <!-- Document -->
+  <symbol id="ic-doc" viewBox="0 0 24 24">
+    <path d="M6 3.5h8L19 8.5V20.5H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M14 3.5v5h5M9 12h7M9 15.5h7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </symbol>
+  <!-- Key -->
+  <symbol id="ic-key" viewBox="0 0 24 24">
+    <circle cx="8" cy="9" r="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="m11.5 12.5 8 8M17 18l2.2-2.2M14.5 15.5l2 -2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </symbol>
+  <!-- Rider -->
+  <symbol id="ic-rider" viewBox="0 0 24 24">
+    <circle cx="6" cy="17.5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+    <circle cx="18" cy="17.5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+    <path d="M6 17.5 10 10h4l3 5M13.5 10l-1.5-3h-2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="14.5" cy="4.5" r="1.6" fill="currentColor"/>
+  </symbol>
+  <!-- Sunrise -->
+  <symbol id="ic-sunrise" viewBox="0 0 24 24">
+    <path d="M4 18h16M7.5 14a4.5 4.5 0 0 1 9 0M12 6V3M5.6 8.6 7 10M18.4 8.6 17 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="m9.5 4.5 2.5-2 2.5 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Moon -->
+  <symbol id="ic-moon" viewBox="0 0 24 24">
+    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Road / escape -->
+  <symbol id="ic-road" viewBox="0 0 24 24">
+    <path d="M4 20 9 4h6l5 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M12 6v2.5M12 12v2.5M12 18v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </symbol>
+  <!-- Briefcase -->
+  <symbol id="ic-case" viewBox="0 0 24 24">
+    <rect x="3.5" y="7.5" width="17" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3.5 12.5h17" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  </symbol>
+  <!-- Compass -->
+  <symbol id="ic-compass" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="m15.5 8.5-2 5-5 2 2-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Rain -->
+  <symbol id="ic-rain" viewBox="0 0 24 24">
+    <path d="M7 15a4.5 4.5 0 0 1-.5-9A5.5 5.5 0 0 1 17 7.5 4 4 0 0 1 17.5 15z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="m8.5 17.5-1 3M12.5 17.5l-1 3M16.5 17.5l-1 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </symbol>
+  <!-- Chevron -->
+  <symbol id="ic-chev" viewBox="0 0 24 24">
+    <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Arrow -->
+  <symbol id="ic-arrow" viewBox="0 0 24 24">
+    <path d="M4 12h15M13 5.5 19.5 12 13 18.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Google G -->
+  <symbol id="ic-g" viewBox="0 0 48 48">
+    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+  </symbol>
+  <!-- Quote -->
+  <symbol id="ic-quote" viewBox="0 0 24 24">
+    <path d="M5 16c-1.2-1-2-2.6-2-4.6C3 7.6 5.6 5 9 4.5l.6 1.8C7.4 7 6.2 8.4 6 10c.3-.1.7-.2 1.1-.2 1.9 0 3.2 1.3 3.2 3.1 0 1.9-1.4 3.3-3.3 3.3-.7 0-1.4-.1-2-.2zm9.5 0c-1.2-1-2-2.6-2-4.6 0-3.8 2.6-6.4 6-6.9l.6 1.8c-2.2.7-3.4 2.1-3.6 3.7.3-.1.7-.2 1.1-.2 1.9 0 3.2 1.3 3.2 3.1 0 1.9-1.4 3.3-3.3 3.3-.7 0-1.4-.1-2-.2z" fill="currentColor"/>
+  </symbol>
+  <!-- Handshake / partner -->
+  <symbol id="ic-partner" viewBox="0 0 24 24">
+    <path d="m3 7 4-2 5 2 5-2 4 2v7l-4 5-4-3h-2l-4 3-4-5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    <path d="M12 7 8.5 10.5a1.6 1.6 0 0 0 2.3 2.3L12 11.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- ══ Scooter illustration ══ -->
+  <symbol id="svg-scooter" viewBox="0 0 360 230">
+    <ellipse cx="180" cy="210" rx="148" ry="9" fill="rgba(20,15,10,.12)"/>
+    <path d="M258 160 C264 132 270 108 282 86" stroke="#3a3d45" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M246 170 A40 40 0 0 1 314 168 L303 175 A28 28 0 0 0 257 176 Z" fill="var(--bike-2,#26272c)"/>
+    <circle cx="92" cy="176" r="37" fill="#17181c"/>
+    <circle cx="92" cy="176" r="21" fill="#383b43"/>
+    <circle cx="92" cy="176" r="7"  fill="#9aa0ab"/>
+    <circle cx="282" cy="176" r="37" fill="#17181c"/>
+    <circle cx="282" cy="176" r="21" fill="#383b43"/>
+    <circle cx="282" cy="176" r="7"  fill="#9aa0ab"/>
+    <path d="M196 166 L262 158 L266 170 L200 178 Z" fill="#1d1e23"/>
+    <path d="M52 160 C40 118 76 100 118 97 L164 94 C192 92 208 104 215 124 L224 148 C229 162 220 170 206 170 L68 174 C58 174 55 170 52 160 Z" fill="var(--bike,#d92b31)"/>
+    <path d="M62 150 C72 122 102 110 140 107 L152 106 C122 112 94 124 80 152 Z" fill="rgba(255,255,255,.22)"/>
+    <path d="M70 98 C74 82 90 74 108 73 L148 71 C164 70 172 79 172 89 L171 97 L74 103 Z" fill="#1d1e23"/>
+    <path d="M236 164 C246 132 252 112 268 88 L288 92 C273 116 265 140 259 168 Z" fill="var(--bike,#d92b31)"/>
+    <path d="M264 150 C270 128 276 110 286 93 L288 92 C274 116 268 138 263 162 Z" fill="rgba(255,255,255,.28)"/>
+    <path d="M268 88 L262 66" stroke="#1d1e23" stroke-width="8" stroke-linecap="round"/>
+    <path d="M250 64 C262 54 280 52 292 58" stroke="#1d1e23" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M258 60 L250 42" stroke="#1d1e23" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="249" cy="38" rx="6.5" ry="8.5" fill="#1d1e23"/>
+    <circle cx="290" cy="76" r="24" fill="var(--glow,rgba(255,214,120,.16))"/>
+    <ellipse cx="286" cy="77" rx="10" ry="7.5" fill="#ffdf8e"/>
+  </symbol>
+
+  <!-- ══ Motorcycle illustration ══ -->
+  <symbol id="svg-moto" viewBox="0 0 360 230">
+    <ellipse cx="180" cy="210" rx="148" ry="9" fill="rgba(20,15,10,.12)"/>
+    <circle cx="84" cy="172" r="40" fill="#17181c"/>
+    <circle cx="84" cy="172" r="24" fill="#383b43"/>
+    <circle cx="84" cy="172" r="8"  fill="#9aa0ab"/>
+    <circle cx="286" cy="172" r="40" fill="#17181c"/>
+    <circle cx="286" cy="172" r="24" fill="#383b43"/>
+    <circle cx="286" cy="172" r="8"  fill="#9aa0ab"/>
+    <path d="M84 170 L162 158 L158 172 L86 180 Z" fill="#2a2b30"/>
+    <path d="M98 156 Q150 148 192 150 L196 162 Q150 162 100 168 Z" fill="#4a4d55"/>
+    <path d="M150 118 L214 112 L220 156 L158 162 Z" fill="#26272c"/>
+    <path d="M232 110 L286 168" stroke="#3a3d45" stroke-width="10" stroke-linecap="round"/>
+    <path d="M245 99 L293 158" stroke="#2a2b30" stroke-width="6" stroke-linecap="round"/>
+    <path d="M38 116 L98 104 L120 122 L64 136 Z" fill="var(--bike-2,#7c1216)"/>
+    <path d="M96 105 C126 95 152 91 180 95 L184 96 C162 103 144 112 134 124 L98 126 Z" fill="#1d1e23"/>
+    <path d="M156 96 C186 85 216 87 236 101 C243 107 242 116 234 118 L196 124 C186 112 172 102 156 96 Z" fill="var(--bike,#d92b31)"/>
+    <path d="M180 93 C202 88 220 93 232 103 C217 96 199 95 183 97 Z" fill="rgba(255,255,255,.25)"/>
+    <path d="M233 101 L254 90 L261 105 L241 116 Z" fill="var(--bike,#d92b31)"/>
+    <circle cx="262" cy="100" r="19" fill="var(--glow,rgba(255,214,120,.15))"/>
+    <ellipse cx="258" cy="101" rx="8" ry="6" fill="#ffdf8e"/>
+    <path d="M242 94 L238 76" stroke="#1d1e23" stroke-width="6" stroke-linecap="round"/>
+    <path d="M228 74 L250 72" stroke="#1d1e23" stroke-width="6" stroke-linecap="round"/>
+    <path d="M252 166 A42 42 0 0 1 318 162 L307 171 A29 29 0 0 0 262 173 Z" fill="var(--bike-2,#26272c)"/>
+  </symbol>
+</svg>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#home">
+      <span class="brand-mark">HR</span>
+      <span class="brand-text">HYPRRIDE<small>BIKE RENTALS</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="active">Home</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#story">Story</a>
+      <a href="knowmore.html">Future</a>
+      <a href="#why">Why HYPRRIDE</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-outline" href="https://wa.me/917032887133?text=Hi%20HYPRRIDE!%20I%27d%20like%20to%20book%20a%20bike." target="_blank" rel="noopener">
+        <svg class="ic"><use href="#ic-wa"/></svg> WhatsApp
+      </a>
+      <a class="btn btn-primary" href="booking.html">
+        <svg class="ic"><use href="#ic-cal"/></svg> Book now
+      </a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero" id="home">
+  <div class="hero-smoke" aria-hidden="true"></div>
+  <div class="hero-bikes" aria-hidden="true">
+    <img class="hero-bike hb-1" src="float-jupiter.webp" alt="">
+    <img class="hero-bike hb-2" src="float-apache.webp" alt="">
+    <img class="hero-bike hb-3" src="float-ntorq.webp" alt="">
+    <img class="hero-bike hb-4" src="float-rayzr.webp" alt="">
+  </div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <p class="hero-eyebrow" data-reveal>RENT IT. RIDE IT.</p>
+      <h1 class="hero-title">
+        <span class="line" data-reveal data-delay="1">Hyderabad</span>
+        <span class="line" data-reveal data-delay="2">moves fast.</span>
+        <span class="line dim" data-reveal data-delay="3">So should you.</span>
+      </h1>
+      <p class="hero-sub" data-reveal data-delay="4">A clean, serviced bike, booked in minutes. Helmet included, price fixed, no surprises.</p>
+      <div class="hero-actions" data-reveal data-delay="5">
+        <a class="btn btn-primary btn-lg" href="booking.html">
+          <svg class="ic"><use href="#ic-cal"/></svg> Book now
+        </a>
+        <a class="btn btn-light btn-lg" href="https://wa.me/917032887133" target="_blank" rel="noopener">
+          <svg class="ic"><use href="#ic-wa"/></svg> WhatsApp Us
+        </a>
+      </div>
+      <div class="hero-trust" data-reveal data-delay="6">
+        <span class="rating-pill">
+          <svg class="ic ic-g"><use href="#ic-g"/></svg>
+          <span class="stars">★★★★★</span>
+          <b>4.8</b> on Google
+        </span>
+      </div>
+      <div class="hero-chips" data-reveal data-delay="7">
+        <span class="chip"><svg class="ic"><use href="#ic-shield"/></svg> Helmet included</span>
+        <span class="chip"><svg class="ic"><use href="#ic-rupee"/></svg> No hidden charges</span>
+        <span class="chip"><svg class="ic"><use href="#ic-bolt"/></svg> Instant booking</span>
+      </div>
+    </div>
+  </div>
+  <div class="container hero-stats" data-reveal>
+    <div class="stat">
+      <span class="stat-num" data-count="79" data-prefix="₹">₹0</span>
+      <span class="stat-label">Starting from, per hour</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-count="6">0</span>
+      <span class="stat-label">Bikes in the fleet</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-count="4.8" data-decimals="1" data-suffix="★">0★</span>
+      <span class="stat-label">Google rated · 686 reviews</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FLEET ══════════════ -->
+<section class="section" id="fleet">
+  <div class="container">
+    <span class="eyebrow" data-reveal><i></i>THE FLEET</span>
+    <h2 class="h2" data-reveal data-delay="1">Pick your ride.</h2>
+    <p class="section-sub" data-reveal data-delay="2">A curated lineup of scooters and motorcycles — sanitised, serviced and road-ready. Transparent hourly and daily pricing, helmet always included.</p>
+
+    <div class="fleet-grid">
+      <!-- Jupiter 110 -->
+      <article class="bike-card" data-reveal>
+        <div class="bike-media">
+          <span class="tag tag-type">SCOOTER</span>
+          <span class="tag tag-cc">110CC</span>
+          <img class="bike-art bike-photo" src="jupiter-110.jpg" alt="TVS Jupiter 110 in red" loading="lazy">
+        </div>
+        <div class="bike-body">
+          <div class="bike-head">
+            <h3>TVS Jupiter <span>110</span></h3>
+            <div class="bike-price"><small>FROM</small><b>₹79</b><em>/hr</em></div>
+          </div>
+          <p class="bike-desc">The effortless city commuter.</p>
+          <div class="pricing-panel">
+            <div class="pricing-rows">
+              <div class="p-cols">
+                <div class="p-col">
+                  <h4>Weekday <small>Mon 12 AM – Fri 5 PM</small></h4>
+                  <div class="p-row"><span>1 hr · 15 km</span><b>₹79</b></div>
+                  <div class="p-row"><span>3 hrs · 40 km</span><b>₹179</b></div>
+                  <div class="p-row"><span>5 hrs · 60 km</span><b>₹279</b></div>
+                  <div class="p-row"><span>7 hrs · 80 km</span><b>₹339</b></div>
+                  <div class="p-row"><span>12 hrs · 100 km</span><b>₹389</b></div>
+                  <div class="p-row"><span>24 hrs · 120 km</span><b>₹499</b></div>
+                </div>
+                <div class="p-col">
+                  <h4>Weekend <small>Fri 5 PM – Mon 12 AM</small></h4>
+                  <div class="p-row"><span>1 hr · 15 km</span><b>₹99</b></div>
+                  <div class="p-row"><span>3 hrs · 40 km</span><b>₹219</b></div>
+                  <div class="p-row"><span>5 hrs · 60 km</span><b>₹329</b></div>
+                  <div class="p-row"><span>7 hrs · 80 km</span><b>₹409</b></div>
+                  <div class="p-row"><span>12 hrs · 100 km</span><b>₹469</b></div>
+                  <div class="p-row"><span>24 hrs · 120 km</span><b>₹599</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bike-actions">
+            <button class="btn btn-ghost toggle-pricing">Show pricing <svg class="ic"><use href="#ic-chev"/></svg></button>
+            <a class="btn btn-primary" href="booking.html?bike=jupiter-110"><svg class="ic"><use href="#ic-cal"/></svg> Book now</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Jupiter 125 -->
+      <article class="bike-card" data-reveal data-delay="1">
+        <div class="bike-media">
+          <span class="tag tag-type">SCOOTER</span>
+          <span class="tag tag-cc">125CC</span>
+          <img class="bike-art bike-photo" src="jupiter-125.jpg" alt="TVS Jupiter 125 in grey" loading="lazy">
+        </div>
+        <div class="bike-body">
+          <div class="bike-head">
+            <h3>TVS Jupiter <span>125</span></h3>
+            <div class="bike-price"><small>FROM</small><b>₹99</b><em>/hr</em></div>
+          </div>
+          <p class="bike-desc">Comfort-first 125cc commuter.</p>
+          <div class="pricing-panel">
+            <div class="pricing-rows">
+              <div class="p-cols">
+                <div class="p-col">
+                  <h4>Weekday <small>Mon 12 AM – Fri 5 PM</small></h4>
+                  <div class="p-row"><span>1 hr · 15 km</span><b>₹99</b></div>
+                  <div class="p-row"><span>3 hrs · 40 km</span><b>₹219</b></div>
+                  <div class="p-row"><span>5 hrs · 60 km</span><b>₹309</b></div>
+                  <div class="p-row"><span>7 hrs · 80 km</span><b>₹369</b></div>
+                  <div class="p-row"><span>12 hrs · 100 km</span><b>₹499</b></div>
+                  <div class="p-row"><span>24 hrs · 120 km</span><b>₹599</b></div>
+                </div>
+                <div class="p-col">
+                  <h4>Weekend <small>Fri 5 PM – Mon 12 AM</small></h4>
+                  <div class="p-row"><span>1 hr · 15 km</span><b>₹119</b></div>
+                  <div class="p-row"><span>3 hrs · 40 km</span><b>₹259</b></div>
+                  <div class="p-row"><span>5 hrs · 60 km</span><b>₹369</b></div>
+                  <div class="p-row"><span>7 hrs · 80 km</span><b>₹439</b></div>
+                  <div class="p-row"><span>12 hrs · 100 km</span><b>₹509</b></div>
+                  <div class="p-row"><span>24 hrs · 120 km</span><b>₹699</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bike-actions">
+            <button class="btn btn-ghost toggle-pricing">Show pricing <svg class="ic"><use href="#ic-chev"/></svg></button>
+            <a class="btn btn-primary" href="booking.html?bike=jupiter-125"><svg class="ic"><use href="#ic-cal"/></svg> Book now</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ntorq 125 -->
+      <article class="bike-card" data-reveal data-delay="2">
+        <div class="bike-media">
+          <span class="tag tag-type">SCOOTER</span>
+          <span class="tag tag-cc">125CC</span>
+          <img class="bike-art bike-photo" src="ntorq-125.avif" alt="TVS Ntorq 125 in matte black with red alloys" loading="lazy">
+        </div>
+        <div class="bike-body">
+          <div class="bike-head">
+            <h3>TVS Ntorq <span>125</span></h3>
+            <div class="bike-price"><small>FROM</small><b>₹99</b><em>/hr</em></div>
+          </div>
+          <p class="bike-desc">Smart, sporty and connected.</p>
+          <div class="pricing-panel">
+            <div class="pricing-rows">
+              <div class="p-cols">
+                <div class="p-col">
+                  <h4>Weekday <small>Mon 12 AM – Fri 5 PM</small></h4>
+                  <div class="p-row"><span>1 hr · 15 km</span><b>₹99</b></div>
+                  <div class="p-row"><span>3 hrs · 40 km</span><b>₹219</b></div>
+                  <div class="p-row"><span>5 hrs · 60 km</span><b>₹309</b></div>
+                  <div class="p-row"><span>7 hrs · 80 km</span><b>₹369</b></div>
+                  <div class="p-row"><span>12 hrs · 100 km</span><b>₹499</b></div>
+                  <div class="p-row"><span>24 hrs · 120 km</span><b>₹599</b></div>
+                </div>
+                <div class="p-col">
+                  <h4>Weekend <small>Fri 5 PM – Mon 12 AM</small></h4>
+                  <div class="p-row"><span>1 hr · 15 km</span><b>₹119</b></div>
+                  <div class="p-row"><span>3 hrs · 40 km</span><b>₹259</b></div>
+                  <div class="p-row"><span>5 hrs · 60 km</span><b>₹369</b></div>
+                  <div class="p-row"><span>7 hrs · 80 km</span><b>₹439</b></div>
+                  <div class="p-row"><span>12 hrs · 100 km</span><b>₹509</b></div>
+                  <div class="p-row"><span>24 hrs · 120 km</span><b>₹699</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bike-actions">
+            <button class="btn btn-ghost toggle-pricing">Show pricing <svg class="ic"><use href="#ic-chev"/></svg></button>
+            <a class="btn btn-primary" href="booking.html?bike=ntorq-125"><svg class="ic"><use href="#ic-cal"/></svg> Book now</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Raider 125 -->
+      <article class="bike-card" data-reveal data-delay="3">
+        <div class="bike-media">
+          <span class="tag tag-type">MOTORCYCLE</span>
+          <span class="tag tag-cc">125CC</span>
+          <img class="bike-art bike-photo" src="tvs-raider-125.jpg" alt="TVS Raider 125 in red and black" loading="lazy">
+        </div>
+        <div class="bike-body">
+          <div class="bike-head">
+            <h3>TVS Raider <span>125</span></h3>
+            <div class="bike-price"><small>FROM</small><b>₹99</b><em>/hr</em></div>
+          </div>
+          <p class="bike-desc">The Gen-Z street machine.</p>
+          <div class="pricing-panel">
+            <div class="pricing-rows">
+              <div class="p-cols">
+                <div class="p-col">
+                  <h4>Weekday <small>Mon 12 AM – Fri 5 PM</small></h4>
+                  <div class="p-row"><span>1 hr · 15 km</span><b>₹99</b></div>
+                  <div class="p-row"><span>3 hrs · 40 km</span><b>₹219</b></div>
+                  <div class="p-row"><span>5 hrs · 60 km</span><b>₹309</b></div>
+                  <div class="p-row"><span>7 hrs · 80 km</span><b>₹369</b></div>
+                  <div class="p-row"><span>12 hrs · 100 km</span><b>₹499</b></div>
+                  <div class="p-row"><span>24 hrs · 120 km</span><b>₹599</b></div>
+                </div>
+                <div class="p-col">
+                  <h4>Weekend <small>Fri 5 PM – Mon 12 AM</small></h4>
+                  <div class="p-row"><span>1 hr · 15 km</span><b>₹119</b></div>
+                  <div class="p-row"><span>3 hrs · 40 km</span><b>₹259</b></div>
+                  <div class="p-row"><span>5 hrs · 60 km</span><b>₹369</b></div>
+                  <div class="p-row"><span>7 hrs · 80 km</span><b>₹439</b></div>
+                  <div class="p-row"><span>12 hrs · 100 km</span><b>₹509</b></div>
+                  <div class="p-row"><span>24 hrs · 120 km</span><b>₹699</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bike-actions">
+            <button class="btn btn-ghost toggle-pricing">Show pricing <svg class="ic"><use href="#ic-chev"/></svg></button>
+            <a class="btn btn-primary" href="booking.html?bike=raider-125"><svg class="ic"><use href="#ic-cal"/></svg> Book now</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- RayZR 125 -->
+      <article class="bike-card" data-reveal data-delay="4">
+        <div class="bike-media">
+          <span class="tag tag-type">SCOOTER</span>
+          <span class="tag tag-cc">125CC</span>
+          <img class="bike-art bike-photo" src="rayzr-125.avif" alt="Yamaha RayZR 125 in blue and black" loading="lazy">
+        </div>
+        <div class="bike-body">
+          <div class="bike-head">
+            <h3>Yamaha RayZR <span>125</span></h3>
+            <div class="bike-price"><small>FROM</small><b>₹99</b><em>/hr</em></div>
+          </div>
+          <p class="bike-desc">Lightweight street style.</p>
+          <div class="pricing-panel">
+            <div class="pricing-rows">
+              <div class="p-cols">
+                <div class="p-col">
+                  <h4>Weekday <small>Mon 12 AM – Fri 5 PM</small></h4>
+                  <div class="p-row"><span>1 hr · 15 km</span><b>₹99</b></div>
+                  <div class="p-row"><span>3 hrs · 40 km</span><b>₹219</b></div>
+                  <div class="p-row"><span>5 hrs · 60 km</span><b>₹309</b></div>
+                  <div class="p-row"><span>7 hrs · 80 km</span><b>₹369</b></div>
+                  <div class="p-row"><span>12 hrs · 100 km</span><b>₹499</b></div>
+                  <div class="p-row"><span>24 hrs · 120 km</span><b>₹599</b></div>
+                </div>
+                <div class="p-col">
+                  <h4>Weekend <small>Fri 5 PM – Mon 12 AM</small></h4>
+                  <div class="p-row"><span>1 hr · 15 km</span><b>₹119</b></div>
+                  <div class="p-row"><span>3 hrs · 40 km</span><b>₹259</b></div>
+                  <div class="p-row"><span>5 hrs · 60 km</span><b>₹369</b></div>
+                  <div class="p-row"><span>7 hrs · 80 km</span><b>₹439</b></div>
+                  <div class="p-row"><span>12 hrs · 100 km</span><b>₹509</b></div>
+                  <div class="p-row"><span>24 hrs · 120 km</span><b>₹699</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bike-actions">
+            <button class="btn btn-ghost toggle-pricing">Show pricing <svg class="ic"><use href="#ic-chev"/></svg></button>
+            <a class="btn btn-primary" href="booking.html?bike=rayzr-125"><svg class="ic"><use href="#ic-cal"/></svg> Book now</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Apache RTR 160 -->
+      <article class="bike-card" data-reveal data-delay="5">
+        <div class="bike-media" style="--bike:#26272c;--bike-2:#c3161d">
+          <span class="tag tag-type">MOTORCYCLE</span>
+          <span class="tag tag-cc">160CC</span>
+          <img class="bike-art bike-photo" src="9231777.jpg" alt="TVS Apache RTR 160 in black and red" loading="lazy">
+        </div>
+        <div class="bike-body">
+          <div class="bike-head">
+            <h3>TVS Apache RTR <span>160</span></h3>
+            <div class="bike-price"><small>FROM</small><b>₹119</b><em>/hr</em></div>
+          </div>
+          <p class="bike-desc">Race-bred performance.</p>
+          <div class="pricing-panel">
+            <div class="pricing-rows">
+              <div class="p-cols">
+                <div class="p-col">
+                  <h4>Weekday <small>Mon 12 AM – Fri 5 PM</small></h4>
+                  <div class="p-row"><span>1 hr · 15 km</span><b>₹119</b></div>
+                  <div class="p-row"><span>3 hrs · 40 km</span><b>₹259</b></div>
+                  <div class="p-row"><span>5 hrs · 60 km</span><b>₹369</b></div>
+                  <div class="p-row"><span>7 hrs · 80 km</span><b>₹439</b></div>
+                  <div class="p-row"><span>12 hrs · 100 km</span><b>₹509</b></div>
+                  <div class="p-row"><span>24 hrs · 120 km</span><b>₹699</b></div>
+                </div>
+                <div class="p-col">
+                  <h4>Weekend <small>Fri 5 PM – Mon 12 AM</small></h4>
+                  <div class="p-row"><span>1 hr · 15 km</span><b>₹139</b></div>
+                  <div class="p-row"><span>3 hrs · 40 km</span><b>₹309</b></div>
+                  <div class="p-row"><span>5 hrs · 60 km</span><b>₹449</b></div>
+                  <div class="p-row"><span>7 hrs · 80 km</span><b>₹529</b></div>
+                  <div class="p-row"><span>12 hrs · 100 km</span><b>₹609</b></div>
+                  <div class="p-row"><span>24 hrs · 120 km</span><b>₹839</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bike-actions">
+            <button class="btn btn-ghost toggle-pricing">Show pricing <svg class="ic"><use href="#ic-chev"/></svg></button>
+            <a class="btn btn-primary" href="booking.html?bike=apache-160"><svg class="ic"><use href="#ic-cal"/></svg> Book now</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <p class="fleet-note" data-reveal>All prices are exclusive of GST. Applicable taxes are added at the time of billing.</p>
+  </div>
+</section>
+
+<!-- ══════════════ STORY ══════════════ -->
+<section class="section section-alt" id="story">
+  <div class="container story-grid">
+    <div class="story-left">
+      <span class="eyebrow" data-reveal><i></i>OUR STORY</span>
+      <h2 class="h2" data-reveal data-delay="1">Started with just two&nbsp;scooters and a&nbsp;simple&nbsp;idea.</h2>
+      <p class="section-sub" data-reveal data-delay="2">HYPRRIDE was born from real street experience in Hyderabad. We built this brand to solve everyday commuting problems with reliable, clean and trusted bikes. Every vehicle is regularly serviced and maintained. No hidden surprises. No compromises.</p>
+      <blockquote class="founder-card" data-reveal data-delay="3">
+        <svg class="ic quote-ic"><use href="#ic-quote"/></svg>
+        <p>“We don’t just provide bikes — we deliver trust. Every ride you take reflects the standards we believe in.”</p>
+        <footer>
+          <span class="avatar">HR</span>
+          <span><b>The Founder’s Promise</b><small>HYPRRIDE · Madhapur, Hyderabad</small></span>
+        </footer>
+      </blockquote>
+      <a class="btn btn-primary btn-lg story-knowmore" data-reveal data-delay="4" href="knowmore.html">
+        Our future <svg class="ic"><use href="#ic-arrow"/></svg>
+      </a>
+    </div>
+    <ol class="timeline">
+      <li data-reveal>
+        <h3>Started with just two scooters</h3>
+        <p>Two scooters and a simple idea. We learned from real riders, solving everyday commute problems one ride at a time.</p>
+      </li>
+      <li data-reveal data-delay="1">
+        <h3>Built from real street experience</h3>
+        <p>Every lesson came from the streets, not a classroom. From breakdowns to busy days, we've seen it all — and built a service riders can truly rely on.</p>
+      </li>
+      <li data-reveal data-delay="2">
+        <h3>Solving Hyderabad's commute</h3>
+        <p>Hyderabad moves fast — and so should you. We reduce waiting, stress and travel uncertainty to make daily commuting smoother and smarter.</p>
+      </li>
+      <li data-reveal data-delay="3">
+        <h3>Building a national brand</h3>
+        <p>Today we're building a smarter, more reliable way to move in the city — and a brand India can trust from sunrise to midnight.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════ WHY HYPRRIDE ══════════════ -->
+<section class="section" id="why">
+  <div class="container why-grid">
+    <div class="why-left">
+      <span class="eyebrow" data-reveal><i></i>WHY HYPRRIDE</span>
+      <h2 class="h2" data-reveal data-delay="1">A rental experience built on <span class="accent">responsibility</span>.</h2>
+      <p class="section-sub" data-reveal data-delay="2">Consistency, transparency and respect for every customer — the non-negotiables behind every HYPRRIDE ride.</p>
+      <a class="btn btn-primary btn-lg" data-reveal data-delay="3" href="booking.html">
+        <svg class="ic"><use href="#ic-cal"/></svg> Book your ride <svg class="ic"><use href="#ic-arrow"/></svg>
+      </a>
+    </div>
+    <div class="why-right" data-reveal data-delay="2">
+      <div class="why-rail" id="whyRail">
+        <button class="rail-tick" aria-label="Feature 1"></button>
+        <button class="rail-tick" aria-label="Feature 2"></button>
+        <button class="rail-tick" aria-label="Feature 3"></button>
+        <button class="rail-tick" aria-label="Feature 4"></button>
+        <button class="rail-tick" aria-label="Feature 5"></button>
+        <button class="rail-tick" aria-label="Feature 6"></button>
+      </div>
+      <div class="why-card" id="whyCard">
+        <div class="why-slide" data-icon="ic-shield">
+          <span class="why-ic"><svg class="ic"><use href="#ic-shield"/></svg></span>
+          <h3>Sanitised, serviced fleet</h3>
+          <p>Every bike is cleaned, health-checked and serviced before it reaches you. Road-ready, every time.</p>
+        </div>
+        <div class="why-slide" data-icon="ic-rider">
+          <span class="why-ic"><svg class="ic"><use href="#ic-rider"/></svg></span>
+          <h3>Helmet always included</h3>
+          <p>A clean, certified helmet comes with every booking — at no extra cost. Safety isn't an add-on.</p>
+        </div>
+        <div class="why-slide" data-icon="ic-eye">
+          <span class="why-ic"><svg class="ic"><use href="#ic-eye"/></svg></span>
+          <h3>Transparent pricing</h3>
+          <p>No hidden charges, no last-minute surprises. The price you see is the price you pay.</p>
+        </div>
+        <div class="why-slide" data-icon="ic-bolt">
+          <span class="why-ic"><svg class="ic"><use href="#ic-bolt"/></svg></span>
+          <h3>Instant WhatsApp booking</h3>
+          <p>No app downloads, no logins. Message us and your ride is confirmed in minutes.</p>
+        </div>
+        <div class="why-slide" data-icon="ic-support">
+          <span class="why-ic"><svg class="ic"><use href="#ic-support"/></svg></span>
+          <h3>Support that rides with you</h3>
+          <p>Breakdown, doubt or delay — help is one message away, from sunrise to midnight.</p>
+        </div>
+        <div class="why-slide" data-icon="ic-clock">
+          <span class="why-ic"><svg class="ic"><use href="#ic-clock"/></svg></span>
+          <h3>Open daily, 7 AM – 12 AM</h3>
+          <p>Early starts or late returns — our timings flex around your day, all week long.</p>
+        </div>
+        <div class="why-count"><span id="whyIndex">01</span> / 06</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ RIDE MOMENTS ══════════════ -->
+<section class="moments" id="moments">
+  <div class="moment-slides" id="momentSlides">
+    <div class="moment active" style="--g1:#c98104;--g2:#c2231f;--g3:#3d0b0e">
+      <div class="container moment-inner">
+        <p class="moment-eyebrow">— &nbsp;RIDE MOMENTS</p>
+        <svg class="ic moment-ic"><use href="#ic-sunrise"/></svg>
+        <h3>Sunrise commutes</h3>
+        <p class="moment-sub">Beat the traffic. Start the day on your terms.</p>
+      </div>
+    </div>
+    <div class="moment" style="--g1:#241a52;--g2:#7b2384;--g3:#12071f">
+      <div class="container moment-inner">
+        <p class="moment-eyebrow">— &nbsp;RIDE MOMENTS</p>
+        <svg class="ic moment-ic"><use href="#ic-moon"/></svg>
+        <h3>Midnight munchies</h3>
+        <p class="moment-sub">The city quiets down. Your ride doesn't have to.</p>
+      </div>
+    </div>
+    <div class="moment" style="--g1:#0b5e57;--g2:#15789b;--g3:#04222b">
+      <div class="container moment-inner">
+        <p class="moment-eyebrow">— &nbsp;RIDE MOMENTS</p>
+        <svg class="ic moment-ic"><use href="#ic-road"/></svg>
+        <h3>Weekend escapes</h3>
+        <p class="moment-sub">Tank full, weekend free. See where the road goes.</p>
+      </div>
+    </div>
+    <div class="moment" style="--g1:#8f1418;--g2:#c2231f;--g3:#1a0505">
+      <div class="container moment-inner">
+        <p class="moment-eyebrow">— &nbsp;RIDE MOMENTS</p>
+        <svg class="ic moment-ic"><use href="#ic-case"/></svg>
+        <h3>Office dashes</h3>
+        <p class="moment-sub">Meetings don't wait. Neither do you.</p>
+      </div>
+    </div>
+    <div class="moment" style="--g1:#b06004;--g2:#c22b64;--g3:#2b0714">
+      <div class="container moment-inner">
+        <p class="moment-eyebrow">— &nbsp;RIDE MOMENTS</p>
+        <svg class="ic moment-ic"><use href="#ic-compass"/></svg>
+        <h3>City wandering</h3>
+        <p class="moment-sub">No plan. No pillion. Just Hyderabad.</p>
+      </div>
+    </div>
+    <div class="moment" style="--g1:#31465c;--g2:#127a86;--g3:#0a1a24">
+      <div class="container moment-inner">
+        <p class="moment-eyebrow">— &nbsp;RIDE MOMENTS</p>
+        <svg class="ic moment-ic"><use href="#ic-rain"/></svg>
+        <h3>Monsoon runs</h3>
+        <p class="moment-sub">A little rain never stopped a rider.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container moment-footer">
+    <span class="moment-bar"><i id="momentBar"></i></span>
+    <span class="moment-count"><span id="momentIndex">01</span> / 06</span>
+  </div>
+</section>
+
+<!-- ══════════════ HOW IT WORKS ══════════════ -->
+<section class="section" id="how">
+  <div class="container center">
+    <span class="eyebrow" data-reveal><i></i>HOW IT WORKS</span>
+    <h2 class="h2" data-reveal data-delay="1">Book your ride to the<br>road in four steps</h2>
+    <p class="section-sub center-sub" data-reveal data-delay="2">No app downloads, no logins — Book in just few taps and your ride is ready.</p>
+
+    <div class="steps-grid">
+      <div class="step-card" data-reveal>
+        <div class="step-top">
+          <span class="step-ic"><svg class="ic"><use href="#ic-cal"/></svg></span>
+          <span class="step-num">01</span>
+        </div>
+        <h3>Book your ride</h3>
+        <p>Pick your bike and time on our booking form — or message us on WhatsApp.</p>
+      </div>
+      <div class="step-card" data-reveal data-delay="1">
+        <div class="step-top">
+          <span class="step-ic"><svg class="ic"><use href="#ic-doc"/></svg></span>
+          <span class="step-num">02</span>
+        </div>
+        <h3>Submit documents</h3>
+        <p>Share a valid driving licence and ID. Quick, simple verification.</p>
+      </div>
+      <div class="step-card" data-reveal data-delay="2">
+        <div class="step-top">
+          <span class="step-ic"><svg class="ic"><use href="#ic-key"/></svg></span>
+          <span class="step-num">03</span>
+        </div>
+        <h3>Pick up bike</h3>
+        <p>Collect a sanitised, ready-to-ride bike with helmet from Madhapur.</p>
+      </div>
+      <div class="step-card" data-reveal data-delay="3">
+        <div class="step-top">
+          <span class="step-ic"><svg class="ic"><use href="#ic-rider"/></svg></span>
+          <span class="step-num">04</span>
+        </div>
+        <h3>Ride freely</h3>
+        <p>Hit the road. Extend anytime — support is one message away.</p>
+      </div>
+    </div>
+
+    <div class="how-actions" data-reveal>
+      <a class="btn btn-primary btn-lg" href="https://wa.me/917032887133?text=Hi%20HYPRRIDE!%20I%27d%20like%20to%20book%20a%20bike." target="_blank" rel="noopener"><svg class="ic"><use href="#ic-wa"/></svg> WhatsApp Us</a>
+      <a class="btn btn-outline btn-lg" href="tel:+917032887133"><svg class="ic"><use href="#ic-phone"/></svg> Call Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ REVIEWS ══════════════ -->
+<section class="section section-alt reviews" id="reviews">
+  <div class="container center">
+    <a class="reviews-pill" data-reveal href="https://www.google.com/maps/search/Hyprride+Bike+Rentals+Madhapur+Hyderabad" target="_blank" rel="noopener">
+      <svg class="ic ic-g"><use href="#ic-g"/></svg>
+      <span class="stars">★★★★★</span> See all our reviews on Google
+    </a>
+  </div>
+  <div class="marquee" data-reveal>
+    <div class="marquee-track">
+      <!-- set A -->
+      <article class="review-card">
+        <div class="review-top"><span class="stars">★★★★★</span><svg class="ic ic-g"><use href="#ic-g"/></svg></div>
+        <p>“Bunch of enthusiastic young guys making a good impact in the market with very affordable pricing and vehicles in good condition — and a hassle-free process, of course.”</p>
+        <footer><span class="avatar">KK</span><span><b>kalyan katta</b><small>2 months ago</small></span></footer>
+      </article>
+      <article class="review-card">
+        <div class="review-top"><span class="stars">★★★★<i>☆</i></span><svg class="ic ic-g"><use href="#ic-g"/></svg></div>
+        <p>“I had a fantastic experience with HYPRRIDE bike rentals. The booking process was super easy, and the staff was very friendly and professional. The bike I rented was in good condition and clean, comfortable to ride. Highly recommended.”</p>
+        <footer><span class="avatar">MK</span><span><b>Madhuri Kesanakurthi</b><small>4 months ago</small></span></footer>
+      </article>
+      <article class="review-card">
+        <div class="review-top"><span class="stars">★★★★<i>☆</i></span><svg class="ic ic-g"><use href="#ic-g"/></svg></div>
+        <p>“I had a really good experience with HYPRRIDE. The staff was very polite and respectful, and explained everything clearly. The bike was well-maintained, smooth to ride, and gave a very comfortable experience on the road.”</p>
+        <footer><span class="avatar">GM</span><span><b>Gavarla Mounika</b><small>9 months ago</small></span></footer>
+      </article>
+      <article class="review-card">
+        <div class="review-top"><span class="stars">★★★★★</span><svg class="ic ic-g"><use href="#ic-g"/></svg></div>
+        <p>“Had a great experience. The bike was in excellent condition, well maintained, and the booking process was quick. The staff was polite and everything was smooth from start to finish.”</p>
+        <footer><span class="avatar">AK</span><span><b>Akash</b><small>4 months ago</small></span></footer>
+      </article>
+      <article class="review-card">
+        <div class="review-top"><span class="stars">★★★★★</span><svg class="ic ic-g"><use href="#ic-g"/></svg></div>
+        <p>“Booked on WhatsApp in the morning and picked up the bike within the hour. Super smooth process, helmet included and totally fair pricing.”</p>
+        <footer><span class="avatar">SR</span><span><b>Sravani R</b><small>3 months ago</small></span></footer>
+      </article>
+      <article class="review-card">
+        <div class="review-top"><span class="stars">★★★★★</span><svg class="ic ic-g"><use href="#ic-g"/></svg></div>
+        <p>“The scooter felt brand new and there were zero hidden charges. My go-to rental in Madhapur now — highly recommend to anyone in Hitech City.”</p>
+        <footer><span class="avatar">RV</span><span><b>Rahul Verma</b><small>1 month ago</small></span></footer>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FAQ ══════════════ -->
+<section class="section" id="faq">
+  <div class="container container-narrow">
+    <div class="center">
+      <span class="eyebrow" data-reveal><i></i>FAQ</span>
+      <h2 class="h2" data-reveal data-delay="1">Questions, answered</h2>
+      <p class="section-sub center-sub" data-reveal data-delay="2">Everything you need to know before you ride. Still unsure? We're a message away.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open data-reveal>
+        <summary>What documents are required to rent a bike?<span class="faq-x"></span></summary>
+        <div class="faq-body"><p>A valid driving licence and a government-issued photo ID (Aadhaar, passport or similar). Verification is quick and done at pickup — message us on WhatsApp and we'll guide you through it.</p></div>
+      </details>
+      <details class="faq-item" data-reveal data-delay="1">
+        <summary>Is there a security deposit?<span class="faq-x"></span></summary>
+        <div class="faq-body"><p>A small refundable deposit may apply depending on the vehicle. It's returned in full when the bike comes back in good condition — no deductions, no drama.</p></div>
+      </details>
+      <details class="faq-item" data-reveal data-delay="2">
+        <summary>What's included with every ride?<span class="faq-x"></span></summary>
+        <div class="faq-body"><p>A sanitised, fully serviced bike, a certified helmet, and on-ride WhatsApp support — all within the listed price. No hidden extras.</p></div>
+      </details>
+      <details class="faq-item" data-reveal data-delay="3">
+        <summary>What is the fuel policy?<span class="faq-x"></span></summary>
+        <div class="faq-body"><p>Bikes are handed over with enough fuel to reach the nearest pump. Fuel during the ride is on the rider — just return it with a similar level.</p></div>
+      </details>
+      <details class="faq-item" data-reveal data-delay="4">
+        <summary>Is there a kilometre limit?<span class="faq-x"></span></summary>
+        <div class="faq-body"><p>Our hourly and daily plans come with generous limits for city riding. Planning a longer trip? Message us and we'll set you up with the right plan.</p></div>
+      </details>
+      <details class="faq-item" data-reveal data-delay="5">
+        <summary>Can I extend my ride?<span class="faq-x"></span></summary>
+        <div class="faq-body"><p>Yes — just message us on WhatsApp before your time ends and we'll extend the booking if the bike is available. Support is one message away.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-card" data-reveal>
+      <div class="contact-left">
+        <span class="eyebrow eyebrow-dark"><i></i>CONTACT</span>
+        <h2 class="h2">Ready to ride?<br>Let's get you on a bike.</h2>
+        <p class="contact-sub">Message us on WhatsApp or call — we'll sort your booking in minutes. <b>#ridewithhyprride</b></p>
+        <div class="contact-grid">
+          <div class="c-item">
+            <span class="c-ic"><svg class="ic"><use href="#ic-pin"/></svg></span>
+            <span><small>VISIT US</small><b>Vittal Rao Nagar, Madhapur, Hyderabad, 500081</b></span>
+          </div>
+          <div class="c-item">
+            <span class="c-ic"><svg class="ic"><use href="#ic-clock"/></svg></span>
+            <span><small>OPEN DAILY</small><b>7:00 AM – 12:00 AM</b></span>
+          </div>
+          <div class="c-item">
+            <span class="c-ic"><svg class="ic"><use href="#ic-phone"/></svg></span>
+            <span><small>CALL US</small><b><a href="tel:+917032887133">+91 7032887133</a></b></span>
+          </div>
+          <div class="c-item">
+            <span class="c-ic"><svg class="ic"><use href="#ic-mail"/></svg></span>
+            <span><small>EMAIL US</small><b><a href="mailto:hyprride@gmail.com">hyprride@gmail.com</a></b></span>
+          </div>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-primary btn-lg" href="https://wa.me/917032887133?text=Hi%20HYPRRIDE!%20I%27d%20like%20to%20book%20a%20bike." target="_blank" rel="noopener"><svg class="ic"><use href="#ic-wa"/></svg> WhatsApp Us</a>
+          <a class="btn btn-grey btn-lg" href="tel:+917032887133"><svg class="ic"><use href="#ic-phone"/></svg> Call Now</a>
+          <a class="ig-link" href="https://instagram.com/hyprride" target="_blank" rel="noopener"><svg class="ic"><use href="#ic-ig"/></svg> @hyprride</a>
+        </div>
+      </div>
+      <div class="contact-map" data-reveal data-delay="2">
+        <iframe title="HYPRRIDE Bike Rentals on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Hyprride-Bike%20Rentals-Madhapur-Hyderabad%2C%20Vittal%20Rao%20Nagar%2C%20Madhapur%2C%20Hyderabad%2C%20Telangana%20500081&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="#home">
+        <span class="brand-mark">HR</span>
+        <span class="brand-text">HYPRRIDE<small>BIKE RENTALS</small></span>
+      </a>
+      <p>Hyderabad doesn't wait — and neither should you. Clean, serviced bikes with the helmet included and the price fixed, from sunrise to midnight.</p>
+      <a class="hashtag" href="https://instagram.com/hyprride" target="_blank" rel="noopener">#ridewithhyprride</a>
+    </div>
+    <div class="footer-col">
+      <h4>EXPLORE</h4>
+      <a href="#home">Home</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#story">Story</a>
+      <a href="#why">Why HYPRRIDE</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a class="accent" href="booking.html">Book a bike</a>
+    </div>
+    <div class="footer-col footer-reach">
+      <h4>VISIT &amp; REACH US</h4>
+      <p><svg class="ic"><use href="#ic-pin"/></svg> Vittal Rao Nagar, Madhapur, Hyderabad, 500081</p>
+      <p><svg class="ic"><use href="#ic-phone"/></svg> <a href="tel:+917032887133">+91 7032887133</a></p>
+      <p><svg class="ic"><use href="#ic-mail"/></svg> <a href="mailto:hyprride@gmail.com">hyprride@gmail.com</a></p>
+      <p><svg class="ic"><use href="#ic-partner"/></svg> <a href="https://wa.me/917032887133?text=Hi!%20I%27d%20like%20to%20partner%20with%20HYPRRIDE.">Partner with us</a></p>
+      <div class="footer-social">
+        <a href="https://wa.me/917032887133" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ic"><use href="#ic-wa"/></svg></a>
+        <a href="https://instagram.com/hyprride" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ic"><use href="#ic-ig"/></svg></a>
+        <a href="tel:+917032887133" aria-label="Call"><svg class="ic"><use href="#ic-phone"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 HYPRRIDE Bike Rentals. All rights reserved.</span>
+    <span>Ride safe. Wear a helmet. 🏍</span>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a class="wa-float" href="https://wa.me/917032887133?text=Hi%20HYPRRIDE!%20I%27d%20like%20to%20book%20a%20bike." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg class="ic"><use href="#ic-wa"/></svg>
+</a>
+
+<script src="script.js?v=3" defer></script>
+</body>
+</html>
