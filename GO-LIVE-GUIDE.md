@@ -108,20 +108,23 @@ edit in `Desktop/website` and copy the changed files across before committing.
 
 ---
 
-## The admin panel — decide before pushing it anywhere
+## The admin panel — deployed, github.io only
 
-The staff panel is **deliberately not** in this repo. Free GitHub Pages only publishes from a
-**public** repo, and `admin.js` carries the fallback password `hyprride2026` in plain text.
+| | |
+|---|---|
+| URL | <https://hyprride-hyprtech.github.io/hyprride-admin/> |
+| Repo | `Hyprride-hyprtech/hyprride-admin` (public) |
+| Local | `Desktop/hyprride-admin` |
+| Custom domain | **none, on purpose** — no `CNAME` file, so it never appears under hyprride.com |
 
-That password is already readable by anyone who views source on a live admin page, so this is not a
-new hole — what changes is *findability*. A public repo is searchable and mirrored; an obscure URL
-is not. Three ways forward:
+Nothing on the public site links to it, and the page carries `noindex, nofollow` so it stays out
+of search results.
 
-1. **Leave the admin on Netlify** — free, already working, URL nobody can guess. Cleanest, and it
-   does not need to live with the website.
-2. **Push it too, but change the password first** to something not reused anywhere, and treat the
-   Firebase email link as the real gate.
-3. **Keep it off the internet** — open `admin.html` straight off the shop computer.
+> **The repo is public**, which is what free GitHub Pages requires, so the fallback password
+> `hyprride2026` in `admin.js` is now readable by anyone who looks. It was already visible via
+> view-source on any live admin page — what changed is that it is now easy to *find*. Treat the
+> Firebase email link as the real gate, and never put customer data or secrets in that repo.
+> To rotate the password, edit `ADMIN_PASS` at the top of `admin.js`, then commit and push.
 
 ---
 
