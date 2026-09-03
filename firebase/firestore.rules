@@ -1,0 +1,59 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // A booking request exactly as booking.js writes it (keep this list in sync with
+    // saveBookingToStorage in booking.js — an unknown key is rejected).
+    function isBookingShape(d) {
+      return d.keys().hasOnly([
+          'id', 'timestamp', 'name', 'phone', 'address',
+          'vehicle', 'vehicleSlug', 'vehicleType', 'vehicleCC',
+          'pickup', 'pickupFormatted', 'duration', 'durationKey', 'kmIncluded', 'rateType',
+          'outstation', 'helmets', 'raincoats', 'unlimitedKM',
+          'rental', 'addons', 'unlimitedCost', 'gst', 'deposit', 'total',
+          'emergencyName', 'emergencyPhone', 'status'
+        ])
+        && d.keys().hasAll(['id', 'timestamp', 'name', 'phone', 'vehicle', 'total', 'status']);
+    }
+
+    function isNewBooking(d, docId) {
+      return isBookingShape(d)
+        && d.status == 'pending'
+        && d.id is string && d.id == docId && d.id.size() <= 64
+        && d.timestamp is string && d.timestamp.size() <= 40
+        && d.name is string && d.name.size() <= 100
+        && d.phone is string && d.phone.size() <= 15
+        && d.vehicle is string && d.vehicle.size() <= 60
+        && d.total is number
+        && (!('address' in d) || (d.address is string && d.address.size() <= 500))
+        && (!('emergencyName' in d) || (d.emergencyName is string && d.emergencyName.size() <= 100))
+        && (!('emergencyPhone' in d) || (d.emergencyPhone is string && d.emergencyPhone.size() <= 15))
+        && (!('pickupFormatted' in d) || (d.pickupFormatted is string && d.pickupFormatted.size() <= 60));
+    }
+
+    // Booking requests.
+    //  - created by the public booking form on hyprride.com
+    //  - read / status-updated / deleted by the admin panel
+    // NOTE: the admin panel has no login (removed 2026-09-03 on request), so
+    // reads and deletes are open: anyone who finds the project ID can list or
+    // remove bookings. Add Firebase Auth to the admin and change `read`/
+    // `update`/`delete` to `request.auth != null` to close that.
+    match /bookings/{bookingId} {
+      allow read: if true;
+      allow create: if isNewBooking(request.resource.data, bookingId);
+
+      // admin may only change the status (nothing else is editable)
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+                    && request.resource.data.status in ['pending', 'confirmed', 'completed', 'cancelled'];
+
+      allow delete: if true;
+    }
+
+    // Fleet availability toggles from the admin (shared across staff devices):
+    // a small map of vehicleSlug → boolean.
+    match /settings/fleet {
+      allow read: if true;
+      allow write: if request.resource.data.size() <= 20;
+    }
+  }
+}

@@ -2,6 +2,28 @@
 (function () {
   'use strict';
 
+  /* ────────────── Firestore — bookings go to the cloud so the admin panel sees them ────────────── */
+  const FIREBASE_CONFIG = {
+    apiKey: 'AIzaSyBhB5japKN3iygUQNGJxkz7m0dBSHYAMBM',
+    authDomain: 'hyprride-7aaac.firebaseapp.com',
+    projectId: 'hyprride-7aaac',
+    storageBucket: 'hyprride-7aaac.firebasestorage.app',
+    messagingSenderId: '508353170229',
+    appId: '1:508353170229:web:b3f28fff8a6202aceb5a7c',
+  };
+  let db = null;
+  try {
+    if (window.firebase && typeof firebase.firestore === 'function') {
+      if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+      db = firebase.firestore();
+      db.settings({ ignoreUndefinedProperties: true });
+    } else {
+      console.warn('Firebase SDK not loaded — running on local data only');
+    }
+  } catch (err) {
+    console.error('Firestore init failed', err);
+  }
+
   /* ────────────── data ────────────── */
   const RATES = {
     '110': { wd: [79, 179, 279, 339, 389, 499], we: [99, 219, 329, 409, 469, 599] },
@@ -475,7 +497,7 @@
     return L.join('\n');
   }
 
-  /* ────────────── save to localStorage for admin ────────────── */
+  /* ────────────── save booking: Firestore (read by the admin panel) + local copy ────────────── */
   function saveBookingToStorage(p) {
     const bookings = JSON.parse(localStorage.getItem('hyprride_bookings') || '[]');
     const dt = pickupDate();
@@ -511,6 +533,11 @@
     };
     bookings.unshift(booking);
     localStorage.setItem('hyprride_bookings', JSON.stringify(bookings));
+
+    /* cloud copy — this is what the admin panel actually reads */
+    if (!db) return Promise.resolve();
+    return db.collection('bookings').doc(booking.id).set(booking)
+      .catch(err => console.error('Booking cloud save failed', err));
   }
 
   /* ────────────── form submit ────────────── */
@@ -525,11 +552,18 @@
       const p = computePrice();
       if (!p) return;
 
-      saveBookingToStorage(p);
+      /* the save must never block the WhatsApp handoff (storage disabled, SDK missing, etc.) */
+      let cloudSave = Promise.resolve();
+      try { cloudSave = saveBookingToStorage(p) || cloudSave; } catch (err) { console.error('Booking save failed', err); }
 
       const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(buildWaMessage());
       const win = window.open(url, '_blank');
-      if (win) win.opener = null; else location.href = url;
+      if (win) {
+        win.opener = null;
+      } else {
+        /* popup blocked → this tab navigates away, so give the cloud save up to 2.5s to land first */
+        Promise.race([cloudSave, new Promise(r => setTimeout(r, 2500))]).then(() => { location.href = url; });
+      }
 
       const after = $('waAfter');
       if (after) {
