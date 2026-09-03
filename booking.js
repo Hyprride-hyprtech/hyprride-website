@@ -24,6 +24,22 @@
     console.error('Firestore init failed', err);
   }
 
+  /* Best-effort catch-up: push any booking still sitting only in this browser's local copy
+     (e.g. saved before Firestore was wired up, or the cloud write got cut off when the tab
+     backgrounded on the WhatsApp handoff). Re-running this on an already-synced booking just
+     gets a harmless permission error from the rules (full-document set on an existing doc is
+     not allowed) and is ignored. */
+  function syncLocalBookingsToCloud() {
+    if (!db) return;
+    let bookings = [];
+    try { bookings = JSON.parse(localStorage.getItem('hyprride_bookings') || '[]'); } catch { return; }
+    bookings.forEach(b => {
+      if (!b || !b.id) return;
+      db.collection('bookings').doc(b.id).set(b).catch(() => { /* already synced, or rejected — skip */ });
+    });
+  }
+  syncLocalBookingsToCloud();
+
   /* ────────────── data ────────────── */
   const RATES = {
     '110': { wd: [79, 179, 279, 339, 389, 499], we: [99, 219, 329, 409, 469, 599] },
@@ -543,7 +559,7 @@
   /* ────────────── form submit ────────────── */
   const bkForm = $('bkForm');
   if (bkForm) {
-    bkForm.addEventListener('submit', e => {
+    bkForm.addEventListener('submit', async e => {
       e.preventDefault();
       if (!validateForm()) {
         focusFirstInvalid();
@@ -552,18 +568,23 @@
       const p = computePrice();
       if (!p) return;
 
-      /* the save must never block the WhatsApp handoff (storage disabled, SDK missing, etc.) */
+      /* Tapping the WhatsApp link switches the OS to the WhatsApp app on most phones, which
+         backgrounds/suspends this tab — an in-flight Firestore write started after that point
+         can be cut off before it reaches the server. So the save must be given real wall-clock
+         time to leave the device *before* we hand off, not fired-and-forgotten alongside it.
+         Cap the wait so a slow/offline connection never blocks the booking itself. */
+      const waSend = $('waSend');
+      if (waSend) waSend.disabled = true;
+
       let cloudSave = Promise.resolve();
       try { cloudSave = saveBookingToStorage(p) || cloudSave; } catch (err) { console.error('Booking save failed', err); }
+      await Promise.race([cloudSave, new Promise(r => setTimeout(r, 1800))]);
+
+      if (waSend) waSend.disabled = false;
 
       const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(buildWaMessage());
       const win = window.open(url, '_blank');
-      if (win) {
-        win.opener = null;
-      } else {
-        /* popup blocked → this tab navigates away, so give the cloud save up to 2.5s to land first */
-        Promise.race([cloudSave, new Promise(r => setTimeout(r, 2500))]).then(() => { location.href = url; });
-      }
+      if (win) win.opener = null; else location.href = url;
 
       const after = $('waAfter');
       if (after) {
