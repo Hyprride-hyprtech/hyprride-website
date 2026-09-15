@@ -70,6 +70,7 @@
   const DEPOSIT_OUTSTATION = 3000;
   const GST = 0.18;
   const WA_NUMBER = '917032887133';
+  const BOOKING_LINK = 'https://www.hyprverse.in/r/LINK-K4DXYW';
 
   /* ────────────── helpers ────────────── */
   const $ = id => document.getElementById(id);
@@ -509,6 +510,8 @@
     L.push('• *Total payable: ' + rupee(p.total) + '*');
     L.push('');
     L.push('📄 I will carry my Driving Licence & Aadhaar at pickup for verification.');
+    L.push('');
+    L.push('🔗 ' + BOOKING_LINK);
 
     return L.join('\n');
   }
