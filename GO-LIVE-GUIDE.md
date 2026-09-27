@@ -185,3 +185,28 @@ delete placeholders → upload the zip → **Extract** → check `index.html` si
 SSL/TLS Status → **Run AutoSSL**.
 
 GitHub Pages does the same job for free, which is why the site is there instead.
+
+---
+
+## Live fleet — read from the HyprVerse vendor app
+
+`fleet-live.js` (home page and booking page) asks the vendor app's API for the shop's real fleet
+and paints it over the built-in lineup:
+
+    GET https://www.hyprverse.in/api/public/fleet
+
+- **Home page** — every fleet card gets a live badge ("3 available now" / "All out right now"),
+  the "from ₹" figure and the pricing panel follow the counter's rate card, a model added in the
+  app gets a card of its own (photo from the app), and a model the shop no longer runs is hidden.
+  The "Bikes in the fleet" and "Starting from" numbers follow too.
+- **Booking page** — the vehicle dropdown lists the live models with how many are free, priced
+  on the app's rate card.
+- **If the API is down or slow** (8 s), nothing changes: the page shows the lineup written into
+  the HTML, exactly as before.
+
+The API answers for ONE shop only — the one the server names in its `WEBSITE_FLEET_ORG` setting
+(the Hyprride Bike Rentals join code, `HYP-QRW971`). It returns models, counts, prices and a
+model photo; never registrations, bookings or customers. Responses are cached for a minute.
+
+> Changed `fleet-live.js`? Bump `fleet-live.js?v=1` in **index.html and booking.html**, same
+> rule as the other scripts. The vanity host falls back to the Azure address by itself.

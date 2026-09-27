@@ -638,3 +638,15 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
 /* ─────────── story "Know More" CTA ─────────── */
 .story-knowmore { margin-top: 1.8rem; align-self: flex-start; }
 
+
+/* ── Live fleet (fleet-live.js): what the counter says right now ── */
+.tag-live{
+  bottom:14px;right:14px;display:inline-flex;align-items:center;gap:.5em;
+  background:#fff;border:1px solid var(--line);color:var(--ink);box-shadow:var(--shadow-sm);
+  text-transform:uppercase;white-space:nowrap;
+}
+.tag-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#1fa85a;box-shadow:0 0 0 3px rgba(31,168,90,.18);animation:pulse-dot 2s ease-in-out infinite}
+.tag-live.is-out{color:var(--muted)}
+.tag-live.is-out::before{background:#b8b5aa;box-shadow:none;animation:none}
+.bike-card.is-out .bike-photo{filter:saturate(.75)}
+.bike-svg{aspect-ratio:360/230;height:auto}

@@ -242,6 +242,55 @@
   }
 
   if (fVehicle) fVehicle.addEventListener('change', onVehicleChange);
+
+  /* ────────────── live fleet (fleet-live.js) ──────────────
+     Swap the built-in lineup for the shop's real one: the models it runs
+     right now, how many of each are free, and the rate card the counter
+     prices them on. If the API is unreachable the built-in list stands. */
+  if (fVehicle && window.HYPRRIDE_FLEET && typeof window.HYPRRIDE_FLEET.then === 'function') {
+    const keyOf = window.HYPRRIDE_FLEET_KEY;
+    const staticImg = {};
+    VEHICLES.forEach(v => { staticImg[keyOf(v.name, v.cc)] = v.img; });
+    const rateKeys = Object.keys(RATES).map(Number).sort((a, b) => a - b);
+    const nearestRateKey = cc => String(rateKeys.find(k => Number(cc) <= k) || rateKeys[rateKeys.length - 1]);
+
+    window.HYPRRIDE_FLEET.then(fleet => {
+      if (!fleet || !fleet.models || !fleet.models.length) return;
+      const live = fleet.models.map(m => {
+        const cc = String(m.engineCc || '');
+        // The counter's weekday/weekend figures for this page's slabs, when it prices every one of them.
+        const wd = [], we = [];
+        SLABS.forEach(s => {
+          const row = (m.rates || []).find(r => Number(r.hours) === parseInt(s.key, 10));
+          wd.push(row ? Number(row.price) : null);
+          we.push(row ? Number(row.weekendPrice) : null);
+        });
+        if (cc && wd.every(p => p > 0)) RATES[cc] = { wd, we };
+        else if (cc && !RATES[cc]) RATES[cc] = RATES[nearestRateKey(cc)];
+        return {
+          slug: m.slug, name: m.name, cc, type: m.type || (m.category === 'car' ? 'Car' : 'Bike'),
+          img: staticImg[keyOf(m.name, cc)] || (m.photo ? fleet.apiBase + m.photo : ''),
+          available: m.available, total: m.total,
+        };
+      });
+      const previous = state.vehicle;
+      const wanted = new URLSearchParams(location.search).get('bike');
+      VEHICLES.splice(0, VEHICLES.length, ...live);
+      while (fVehicle.options.length > 1) fVehicle.remove(1);
+      VEHICLES.forEach(v => {
+        const opt = document.createElement('option');
+        opt.value = v.slug;
+        opt.textContent = v.name + ' · ' + v.type + ' · ' + v.cc + 'cc · '
+          + (v.available > 0 ? v.available + ' free now' : 'none free right now');
+        fVehicle.appendChild(opt);
+      });
+      const pick = key => VEHICLES.find(v => keyOf(v.name, v.cc) === key);
+      const again = previous ? pick(keyOf(previous.name, previous.cc))
+        : wanted ? (VEHICLES.find(v => v.slug === wanted) || pick(window.HYPRRIDE_FLEET_SLUG_KEY(wanted))) : null;
+      fVehicle.value = again ? again.slug : '';
+      onVehicleChange();
+    });
+  }
   if (fPickup) fPickup.addEventListener('change', () => { renderSlabs(); renderSummary(); });
 
   /* ────────────── slab pricing ────────────── */
