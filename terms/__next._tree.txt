@@ -7,4 +7,4 @@
 :HL["/_next/static/media/satoshi_900-s.p.1_bicwjk2v12h.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/brand/hr-mark.webp","image"]
 :HL["/brand/hr-mark-dark.webp","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"terms","param":null,"prefetchHints":4160,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"YisUfPzzhzhTg_WFB_vyx"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"terms","param":null,"prefetchHints":4160,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"GPitybfhn0FgmQrMfrCSM"}
