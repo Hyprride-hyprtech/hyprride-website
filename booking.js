@@ -69,7 +69,7 @@
   const DEPOSIT_CITY = 1000;
   const DEPOSIT_OUTSTATION = 3000;
   const GST = 0.18;
-  const WA_NUMBER = '917032887133';
+  const WA_NUMBER = '917799287133';
 
   /* ────────────── helpers ────────────── */
   const $ = id => document.getElementById(id);
