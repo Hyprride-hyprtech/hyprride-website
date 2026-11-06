@@ -2,4 +2,6 @@
 
 html.wait #book[data-intro]{opacity:1}html.play #book[data-intro]{animation:none}html.wait .hero-media{clip-path:none}html.play .hero-media{animation:none}
 html.splash-out .splash-screen{z-index:80;pointer-events:none;align-content:center;place-items:center;gap:1.4rem;display:grid;position:fixed;inset:0}html.splash-out .brand-tile,html.splash-out .brand-word,html.splash-out .brand-rest{opacity:0}
+.splash-mark>img{animation-duration:.6s}.splash-word>span{animation-duration:.5s;animation-delay:calc(var(--li) * 30ms + .12s)}.splash-tag{animation-duration:.5s;animation-delay:.3s}
+html.play [data-intro]{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--i,0) * .07s)}html.play [data-intro-split] .w>span{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--wi,0) * 50ms)}
 html[data-theme=light]{--color-dim:#6b615a}

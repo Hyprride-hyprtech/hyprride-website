@@ -17,15 +17,21 @@ What the patch does
   as the Largest Contentful Paint at first paint instead of after the intro.
 - The three waiting slideshow pictures load only after the first one has
   painted (`data-src`, swapped by the runner script at the end of `<body>`).
-- The splash closes itself about 1.2 s after first paint without waiting for
-  the app code to hydrate (a 2.6 s timer ends it even if the morph animation
-  is interrupted). The app's MotionGate joins in through `window.__hrSplash`;
+- The splash closes itself 0.75 s after first paint without waiting for the
+  app code to hydrate: letters in 0.5 s, logo and word morph into the header
+  in 0.65 s, background wipe 0.6 s, text intro from 0.3 s with a 70 ms
+  stagger (a 2 s timer ends the close-out even if the morph animation is
+  interrupted). The app's MotionGate joins in through `window.__hrSplash`;
   if the runner is missing it falls back to its own sequence.
 - The desktop "How it works" connector beams are `aria-hidden`, so the list
   only exposes its items to screen readers.
-- Only the two display font weights are preloaded; logo and body-font
-  preloads are gone. Logo and fleet pictures carry `srcset`.
-- Microsoft Clarity starts on an idle moment (at most 2.5 s in).
+- Only the splash-word font weight (900) is preloaded in the HTML; the other
+  font preloads come back from React's payload hints after hydration, which
+  is after the first paint. The two full-size logo hints are removed from
+  the payload, so they are never fetched. Logo and fleet pictures carry
+  `srcset`.
+- Microsoft Clarity is removed from every page (it set Bing third-party
+  cookies and cost ~0.4 s of main-thread time).
 - The site no longer asks the API for `/links/<code>/stats` (the endpoint
   never existed; the fleet count already came from `/vehicles`).
 - `--color-dim` on light surfaces is `#6b615a` (4.5:1 contrast).
