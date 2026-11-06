@@ -18,9 +18,11 @@ What the patch does
 - The three waiting slideshow pictures load only after the first one has
   painted (`data-src`, swapped by the runner script at the end of `<body>`).
 - The splash closes itself about 1.2 s after first paint without waiting for
-  the app code to hydrate. The app's MotionGate joins in through
-  `window.__hrSplash`; if the runner is missing it falls back to its own
-  sequence.
+  the app code to hydrate (a 2.6 s timer ends it even if the morph animation
+  is interrupted). The app's MotionGate joins in through `window.__hrSplash`;
+  if the runner is missing it falls back to its own sequence.
+- The desktop "How it works" connector beams are `aria-hidden`, so the list
+  only exposes its items to screen readers.
 - Only the two display font weights are preloaded; logo and body-font
   preloads are gone. Logo and fleet pictures carry `srcset`.
 - Microsoft Clarity starts on an idle moment (at most 2.5 s in).

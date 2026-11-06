@@ -25,8 +25,8 @@ const pageChunk = '_next/static/chunks/0iot7uebytd0t.js';
 const set = (name, widths, max) => widths.map((w) => `/${name}-${w}.webp ${w}w`).concat(`/${name}.webp ${max}w`).join(', ');
 const scene = (n) => set(`scenes/${n}`, [480, 768, 1024, 1200], 1600);
 const heroSizes = '(min-width:1180px) 600px, (min-width:1024px) 52vw, calc(100vw - 50px)';
-const markLight = set('brand/hr-mark', [216, 432], 864);
-const markDark = set('brand/hr-mark-dark', [216, 432], 747);
+const markLight = set('brand/hr-mark', [216, 432, 648], 864);
+const markDark = set('brand/hr-mark-dark', [216, 432, 648], 747);
 const splashSizes = '(max-width:531px) 170px, (min-width:1125px) 360px, 32vw';
 
 // Runs at the end of <body>, after the blocking stylesheet, so it starts
@@ -51,7 +51,7 @@ if(tm)mark.animate([{transform:'none'},{transform:tm}],{duration:850,easing:ease
 var h=word.animate([{transform:'none'},{transform:tw}],{duration:1000,delay:180,easing:ease,fill:'both'});
 var tag=scr.querySelector('.splash-tag');if(tag)tag.animate([{opacity:1},{opacity:0}],{duration:300,fill:'forwards'});
 var bg=scr.querySelector('.splash-bg');if(bg)bg.animate([{clipPath:'inset(0 0 0 0)'},{clipPath:'inset(0 0 100% 0)'}],{duration:900,delay:250,easing:ease,fill:'forwards'});
-h.finished.then(fin,fin);}catch(e){play();fin();}}
+h.finished.then(fin,fin);setTimeout(fin,2600);}catch(e){play();fin();}}
 Promise.race([document.fonts?document.fonts.ready:wait(0),wait(600)]).then(function(){return wait(Math.max(0,1200-(performance.now()-t0)));}).then(out,out);
 })();</script>`;
 
@@ -93,12 +93,13 @@ for (const page of pages) {
 
   // logos: pick the size from where the mark sits
   let marks = 0;
-  h = h.replace(/<img src="\/brand\/hr-mark(-dark)?\.webp" alt=""/g, (m, dark, at) => {
+  h = h.replace(/<img src="\/brand\/hr-mark(-dark)?\.webp"(?: srcset="[^"]*" sizes="[^"]*")? alt=""/g, (m, dark, at) => {
     const near = h.slice(Math.max(0, at - 400), at);
     const splash = near.lastIndexOf('splash-mark'), tile = near.lastIndexOf('brand-tile');
     const sizes = splash > tile ? splashSizes : tile >= 0 ? '72px' : '160px';
-    marks++;
-    return `<img src="/brand/hr-mark${dark || ''}.webp" srcset="${dark ? markDark : markLight}" sizes="${sizes}" alt=""`;
+    const next = `<img src="/brand/hr-mark${dark || ''}.webp" srcset="${dark ? markDark : markLight}" sizes="${sizes}" alt=""`;
+    if (next !== m) marks++;
+    return next;
   });
   if (marks) log.push(`  ${page}: ${marks} logo pictures responsive`);
 
@@ -133,6 +134,8 @@ save(gateChunk, g);
 
 let p = read(pageChunk);
 p = edit(pageChunk, p, 'skip stats when unset', 'async function L(e){let t=await fetch(E.SITE.statsApi,', 'async function L(e){if(!E.SITE.statsApi)return null;let t=await fetch(E.SITE.statsApi,');
+p = edit(pageChunk, p, 'connector beams hidden from screen readers', '("svg",{fill:"none",width:S.width,height:S.height,xmlns:"http://www.w3.org/2000/svg",className:(0,r.cn)("pointer-events-none absolute top-0 left-0 transform-gpu stroke-2",e),',
+  '("svg",{"aria-hidden":!0,fill:"none",width:S.width,height:S.height,xmlns:"http://www.w3.org/2000/svg",className:(0,r.cn)("pointer-events-none absolute top-0 left-0 transform-gpu stroke-2",e),');
 p = edit(pageChunk, p, 'fleet cards responsive', '("img",{src:i.img,alt:i.alt,loading:"lazy",width:960,height:720,',
   '("img",{src:i.img,srcSet:i.img.replace(".webp","-540.webp")+" 540w, "+i.img.replace(".webp","-810.webp")+" 810w, "+i.img+" 960w",sizes:"(min-width:768px) 300px, 66vw",alt:i.alt,loading:"lazy",width:960,height:720,');
 save(pageChunk, p);

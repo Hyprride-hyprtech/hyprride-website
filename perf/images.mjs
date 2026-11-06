@@ -15,7 +15,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const plan = {
   scenes: { widths: [480, 768, 1024, 1200], skip: /^scene-/, webp: { quality: 78, smartSubsample: true, effort: 6 } },
   fleet: { widths: [540, 810], webp: { quality: 80, smartSubsample: true, effort: 6 } },
-  brand: { widths: [216, 432], webp: { quality: 86, alphaQuality: 95, effort: 6 } },
+  brand: { widths: [216, 432, 648], webp: { quality: 86, alphaQuality: 95, effort: 6 } },
 };
 
 const made = [];
