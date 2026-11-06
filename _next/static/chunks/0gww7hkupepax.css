@@ -5,3 +5,4 @@ html.splash-out .splash-screen{z-index:80;pointer-events:none;align-content:cent
 .splash-mark>img{animation-duration:.6s}.splash-word>span{animation-duration:.5s;animation-delay:calc(var(--li) * 30ms + .12s)}.splash-tag{animation-duration:.5s;animation-delay:.3s}
 html.play [data-intro]{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--i,0) * .07s)}html.play [data-intro-split] .w>span{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--wi,0) * 50ms)}
 html[data-theme=light]{--color-dim:#6b615a}
+@media (hover:none) and (pointer:coarse){.live-dot{animation:hr-live 2s ease-in-out infinite;box-shadow:none}@keyframes hr-live{50%{opacity:.45}}.border-beam{animation:none;display:none}.moment-rain{animation:none}html.anim [data-reveal]{transition:opacity 1s var(--ease-expo), transform 1.1s var(--ease-expo)}html.anim [data-reveal]:not(.in){filter:none}}

@@ -40,8 +40,17 @@ html.splash-out .splash-screen{z-index:80;pointer-events:none;align-content:cent
 .splash-mark>img{animation-duration:.6s}.splash-word>span{animation-duration:.5s;animation-delay:calc(var(--li) * 30ms + .12s)}.splash-tag{animation-duration:.5s;animation-delay:.3s}
 html.play [data-intro]{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--i,0) * .07s)}html.play [data-intro-split] .w>span{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--wi,0) * 50ms)}
 html[data-theme=light]{--color-dim:#6b615a}
+@media (hover:none) and (pointer:coarse){.live-dot{animation:hr-live 2s ease-in-out infinite;box-shadow:none}@keyframes hr-live{50%{opacity:.45}}.border-beam{animation:none;display:none}.moment-rain{animation:none}html.anim [data-reveal]{transition:opacity 1s var(--ease-expo), transform 1.1s var(--ease-expo)}html.anim [data-reveal]:not(.in){filter:none}}
 `;
 let c = read(css);
+
+// touch devices: the animated dots canvas stops drawing (the same dots are
+// a static CSS background underneath); every-frame main-thread work hurts
+// tap response on phones
+const dotsChunk = '_next/static/chunks/3hxig_1t9br5a.js';
+let dots = read(dotsChunk);
+dots = edit(dotsChunk, dots, 'dots canvas idle on touch devices', 'let e=n.current,t=e?.getContext("2d");if(!e||!t)return;', 'let e=n.current;if(!e||matchMedia("(hover:none) and (pointer:coarse)").matches)return;let t=e.getContext("2d");if(!t)return;');
+save(dotsChunk, dots);
 const blockStart = c.indexOf('\nhtml.wait #book[data-intro]{opacity:1}');
 const base = blockStart >= 0 ? c.slice(0, blockStart) : c;
 if (base + cssBlock !== c) {

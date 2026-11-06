@@ -47,6 +47,12 @@ What the patch does
 - The site no longer asks the API for `/links/<code>/stats` (the endpoint
   never existed; the fleet count already came from `/vehicles`).
 - `--color-dim` on light surfaces is `#6b615a` (4.5:1 contrast).
+- On touch devices only (`hover:none` + `pointer:coarse`): the "live" dot
+  pulses by opacity instead of box-shadow, the moving border glow and the
+  story-section rain are off, scroll-in reveals rise without the blur, and
+  the animated dots canvas stays idle (the same dots are a static CSS
+  background). These are every-frame main-thread animations that delay
+  tap response (INP) on phones; desktop is unchanged.
 
 Measuring
 
