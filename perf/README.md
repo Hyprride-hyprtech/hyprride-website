@@ -38,8 +38,12 @@ What the patch does
 
 Measuring
 
-Run Lighthouse with real throttling, not the default simulation; on
-localhost every script finishes before first paint, which the simulation
-then counts against the LCP:
+On localhost every script finishes before first paint, which Lighthouse's
+default simulation then counts against the LCP. Either run with real
+throttling, or put the throttling proxy in front of the local server so the
+simulation (what PageSpeed Insights uses) sees a realistic request order:
 
+    npx serve -l 5466 .
+    node perf/throttle-proxy.js 5467 5466 120 4     # 120 ms latency, 4 Mbps
+    npx lighthouse http://localhost:5467/ --view    # PSI-style
     npx lighthouse http://localhost:5466/ --throttling-method=devtools --view
