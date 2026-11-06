@@ -20,6 +20,7 @@ const edit = (file, text, label, from, to) => {
 const pages = ['index.html', '404.html', '_not-found.html', 'careers.html', 'future.html', 'privacy.html', 'terms.html'];
 const plainPages = ['booking.html', 'knowmore.html'];
 const css = '_next/static/chunks/0gww7hkupepax.css';
+const fontCss = '_next/static/chunks/1rgkft9nkmi0-.css';
 const gateChunk = '_next/static/chunks/09qyvo33jamr5.js';
 const pageChunk = '_next/static/chunks/0iot7uebytd0t.js';
 
@@ -29,6 +30,33 @@ const heroSizes = '(min-width:1180px) 600px, (min-width:1024px) 52vw, calc(100vw
 const markLight = set('brand/hr-mark', [216, 432, 648], 864);
 const markDark = set('brand/hr-mark-dark', [216, 432, 648], 747);
 const splashSizes = '(max-width:531px) 170px, (min-width:1125px) 360px, 32vw';
+
+// stylesheet: the hero card never hides behind the intro, the splash-out
+// state the runner uses, a quicker splash, and dim text that reads at 4.5:1
+// on light surfaces. The block is replaced whole on every run.
+const cssBlock = `
+html.wait #book[data-intro]{opacity:1}html.play #book[data-intro]{animation:none}html.wait .hero-media{clip-path:none}html.play .hero-media{animation:none}
+html.splash-out .splash-screen{z-index:80;pointer-events:none;align-content:center;place-items:center;gap:1.4rem;display:grid;position:fixed;inset:0}html.splash-out .brand-tile,html.splash-out .brand-word,html.splash-out .brand-rest{opacity:0}
+.splash-mark>img{animation-duration:.6s}.splash-word>span{animation-duration:.5s;animation-delay:calc(var(--li) * 30ms + .12s)}.splash-tag{animation-duration:.5s;animation-delay:.3s}
+html.play [data-intro]{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--i,0) * .07s)}html.play [data-intro-split] .w>span{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--wi,0) * 50ms)}
+html[data-theme=light]{--color-dim:#6b615a}
+`;
+let c = read(css);
+const blockStart = c.indexOf('\nhtml.wait #book[data-intro]{opacity:1}');
+const base = blockStart >= 0 ? c.slice(0, blockStart) : c;
+if (base + cssBlock !== c) {
+  c = base + cssBlock;
+  save(css, c);
+  log.push(`  ${css}: hero visible from first paint, splash-out, quicker splash, dim colour`);
+}
+
+// Both stylesheets go inline so the first paint waits for nothing but the
+// page itself; the <link>s stay (React's hydration looks for them) but load
+// without blocking.
+const absolute = (s) => s.replace(/url\(\.\.\//g, 'url(/_next/static/');
+const inlineCss = `<style data-hr-css="">${absolute(read(fontCss).trim())}\n${absolute(c.trim())}</style>`;
+const sheet = (href) => `<link rel="stylesheet" href="${href}" data-precedence="next"/>`;
+const lazySheet = (href) => `<link rel="stylesheet" href="${href}" data-precedence="next" media="print" onload="this.media=&quot;all&quot;"/>`;
 
 // Runs at the end of <body>, after the blocking stylesheet, so it starts
 // at first paint. Owns the splash so the page never waits for the app code,
@@ -78,6 +106,17 @@ for (const page of pages) {
   // React re-creates preloads from these payload hint rows after hydration
   h = edit(page, h, 'no logo preload hints', /:HL\[\\"\/brand\/hr-mark(?:-dark)?\.webp\\",\\"image\\"\]\\n/g, '');
   h = edit(page, h, 'static fallback gate 4 s', "d.classList.add('static');},3000);", "d.classList.add('static');},4000);");
+
+  // stylesheets inline, links non-blocking
+  const styled = h.match(/<style data-hr-css="">[\s\S]*?<\/style>/);
+  if (!styled) {
+    h = h.replace(sheet(`/${fontCss}`), inlineCss + lazySheet(`/${fontCss}`));
+    h = h.replace(sheet(`/${css}`), lazySheet(`/${css}`));
+    log.push(`  ${page}: stylesheets inline`);
+  } else if (styled[0] !== inlineCss) {
+    h = h.replace(styled[0], inlineCss);
+    log.push(`  ${page}: inline stylesheet refreshed`);
+  }
 
   // hero slideshow (home page only)
   h = edit(page, h, 'hero picture responsive',
@@ -129,24 +168,6 @@ for (const f of payloads('')) {
   const t = read(f);
   const next = edit(f, t, 'no logo preload hints', /^:HL\["\/brand\/hr-mark(?:-dark)?\.webp","image"\]\r?\n/gm, '');
   if (next !== t) save(f, next);
-}
-
-// stylesheet: the hero card never hides behind the intro, the splash-out
-// state the runner uses, a quicker splash, and dim text that reads at 4.5:1
-// on light surfaces. The block is replaced whole on every run.
-const cssBlock = `
-html.wait #book[data-intro]{opacity:1}html.play #book[data-intro]{animation:none}html.wait .hero-media{clip-path:none}html.play .hero-media{animation:none}
-html.splash-out .splash-screen{z-index:80;pointer-events:none;align-content:center;place-items:center;gap:1.4rem;display:grid;position:fixed;inset:0}html.splash-out .brand-tile,html.splash-out .brand-word,html.splash-out .brand-rest{opacity:0}
-.splash-mark>img{animation-duration:.6s}.splash-word>span{animation-duration:.5s;animation-delay:calc(var(--li) * 30ms + .12s)}.splash-tag{animation-duration:.5s;animation-delay:.3s}
-html.play [data-intro]{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--i,0) * .07s)}html.play [data-intro-split] .w>span{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--wi,0) * 50ms)}
-html[data-theme=light]{--color-dim:#6b615a}
-`;
-let c = read(css);
-const blockStart = c.indexOf('\nhtml.wait #book[data-intro]{opacity:1}');
-const base = blockStart >= 0 ? c.slice(0, blockStart) : c;
-if (base + cssBlock !== c) {
-  save(css, base + cssBlock);
-  log.push(`  ${css}: hero visible from first paint, splash-out, quicker splash, dim colour`);
 }
 
 // app code: MotionGate waits for the runner's splash; the fleet numbers no

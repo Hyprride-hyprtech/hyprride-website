@@ -11,6 +11,12 @@ work lives in two scripts that edit the exported files in place.
 
 What the patch does
 
+- Both stylesheets are inlined in every page (`<style data-hr-css>`), so the
+  first paint waits for nothing but the page itself. On a fast network the
+  app's JavaScript otherwise arrives before the stylesheet and runs before
+  the first paint, which held the paint back by ~2 s in PageSpeed's own
+  runs. The `<link>`s remain for React's hydration but load as `media=print`
+  and switch to `all` on load.
 - The hero picture is preloaded first, with the same `srcset`/`sizes` as the
   `<img>`, and is never hidden by the intro: the card it sits in keeps
   `opacity:1` and no `clip-path` while the splash is up, so Chrome records it
