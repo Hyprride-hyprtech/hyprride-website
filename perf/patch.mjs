@@ -35,7 +35,7 @@ const splashSizes = '(max-width:531px) 170px, (min-width:1125px) 360px, 32vw';
 // state the runner uses, a quicker splash, and dim text that reads at 4.5:1
 // on light surfaces. The block is replaced whole on every run.
 const cssBlock = `
-html.wait #book[data-intro]{opacity:1}html.play #book[data-intro]{animation:none}html.wait .hero-media{clip-path:none}html.play .hero-media{animation:none}
+html.wait #book[data-intro]{opacity:1}html.play #book[data-intro]{animation:none}html.wait .hero-media{clip-path:none}html.play .hero-media{animation:none}html.play .hero-media-zoom{animation:none}
 html.splash-out .splash-screen{z-index:80;pointer-events:none;align-content:center;place-items:center;gap:1.4rem;display:grid;position:fixed;inset:0}html.splash-out .brand-tile,html.splash-out .brand-word,html.splash-out .brand-rest{opacity:0}
 .splash-mark>img{animation-duration:.6s}.splash-word>span{animation-duration:.5s;animation-delay:calc(var(--li) * 30ms + .12s)}.splash-tag{animation-duration:.5s;animation-delay:.3s}
 html.play [data-intro]{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--i,0) * .07s)}html.play [data-intro-split] .w>span{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--wi,0) * 50ms)}
@@ -91,8 +91,11 @@ Promise.race([document.fonts?document.fonts.ready:wait(0),wait(500)]).then(funct
 const boot = `<script data-hr-boot="">(function(){var w=window,d=document;
 function boot(){if(w.__hrBooted)return;w.__hrBooted=true;var l=d.querySelectorAll('script[type="hr/boot"]');for(var i=0;i<l.length;i++){var t=l[i],s=d.createElement('script');s.src=t.getAttribute('data-src');s.async=true;if(t.getAttribute('data-id'))s.id=t.getAttribute('data-id');t.parentNode.replaceChild(s,t);}}
 try{var frame=function(){return new Promise(function(r){requestAnimationFrame(function(){setTimeout(r,0);});});};
-var hero=d.querySelector('img.hero-bike'),ready=hero&&hero.decode?Promise.race([hero.decode().catch(function(){}),new Promise(function(r){setTimeout(r,1200);})]):Promise.resolve();
-ready.then(frame).then(frame).then(function(){setTimeout(boot,50);},boot);setTimeout(boot,2500);}catch(e){boot();}
+var hero=d.querySelector('img.hero-bike'),types=(w.PerformanceObserver&&PerformanceObserver.supportedEntryTypes)||[];
+var painted=new Promise(function(r){var type=hero&&types.indexOf('largest-contentful-paint')>=0?'largest-contentful-paint':types.indexOf('paint')>=0?'paint':'';
+if(!type)return r();var po=new PerformanceObserver(function(l){if(l.getEntries().some(function(e){return type!=='paint'||e.name==='first-contentful-paint';})){po.disconnect();r();}});po.observe({type:type,buffered:true});});
+var ready=hero&&hero.decode?Promise.race([hero.decode().catch(function(){}),new Promise(function(r){setTimeout(r,1200);})]):Promise.resolve();
+Promise.all([painted,ready]).then(frame).then(function(){setTimeout(boot,50);},boot);setTimeout(boot,2500);}catch(e){boot();}
 })();</script>`;
 
 // Microsoft Clarity, in its original form and in the deferred form an
