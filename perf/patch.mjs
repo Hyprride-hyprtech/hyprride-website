@@ -84,6 +84,17 @@ h.finished.then(fin,fin);setTimeout(fin,2000);}catch(e){play();fin();}}
 Promise.race([document.fonts?document.fonts.ready:wait(0),wait(500)]).then(function(){return wait(Math.max(0,750-(performance.now()-t0)));}).then(out,out);
 })();</script>`;
 
+// The app chunks wait as inert placeholders and start after the first frame
+// is on screen and the hero picture has decoded (at most 2.5 s in). On a
+// fast connection they otherwise arrive within ~200 ms and run before the
+// first paint, holding the whole first screen back behind hydration.
+const boot = `<script data-hr-boot="">(function(){var w=window,d=document;
+function boot(){if(w.__hrBooted)return;w.__hrBooted=true;var l=d.querySelectorAll('script[type="hr/boot"]');for(var i=0;i<l.length;i++){var t=l[i],s=d.createElement('script');s.src=t.getAttribute('data-src');s.async=true;if(t.getAttribute('data-id'))s.id=t.getAttribute('data-id');t.parentNode.replaceChild(s,t);}}
+try{var frame=function(){return new Promise(function(r){requestAnimationFrame(function(){setTimeout(r,0);});});};
+var hero=d.querySelector('img.hero-bike'),ready=hero&&hero.decode?Promise.race([hero.decode().catch(function(){}),new Promise(function(r){setTimeout(r,1200);})]):Promise.resolve();
+ready.then(frame).then(frame).then(function(){setTimeout(boot,50);},boot);setTimeout(boot,2500);}catch(e){boot();}
+})();</script>`;
+
 // Microsoft Clarity, in its original form and in the deferred form an
 // earlier version of this script wrote
 const clarity = /<script type="text\/javascript">\(function\(c,l,a,r,i,t,y\)[^<]*<\/script>|<script>\(function\(\)\{function go\(\)\{[^<]*<\/script>/g;
@@ -147,6 +158,17 @@ for (const page of pages) {
   if (!old || old[0] !== runner) {
     h = old ? h.replace(old[0], runner) : h.replace('</body>', `${runner}</body>`);
     log.push(`  ${page}: splash runner`);
+  }
+
+  // app chunks start after the first paint
+  h = edit(page, h, 'chunk scripts wait for the first paint',
+    /<script src="(\/_next\/static\/chunks\/[^"]+\.js)"(?: id="([^"]+)")? async=""><\/script>/g,
+    (m, src, id) => `<script type="hr/boot" data-src="${src}"${id ? ` data-id="${id}"` : ''}></script>`);
+  h = edit(page, h, 'no early bootstrap preload', /<link rel="preload" as="script" fetchPriority="low" href="\/_next\/static\/chunks\/[^"]+"\/>/g, '');
+  const oldBoot = h.match(/<script data-hr-boot="">[\s\S]*?<\/script>/);
+  if (!oldBoot || oldBoot[0] !== boot) {
+    h = oldBoot ? h.replace(oldBoot[0], boot) : h.replace('</body>', `${boot}</body>`);
+    log.push(`  ${page}: boot after first paint`);
   }
 
   if (h !== before) save(page, h);

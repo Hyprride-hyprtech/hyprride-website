@@ -11,6 +11,12 @@ work lives in two scripts that edit the exported files in place.
 
 What the patch does
 
+- The app chunks sit in the page as inert `<script type="hr/boot">`
+  placeholders; `<script data-hr-boot>` at the end of `<body>` swaps them for
+  real scripts once the first frame is on screen and the hero picture has
+  decoded (at most 2.5 s in, immediately on any error). On a fast connection
+  the chunks otherwise arrive within ~200 ms and run before the first paint,
+  which held the first screen back ~2 s in PageSpeed's runs.
 - Both stylesheets are inlined in every page (`<style data-hr-css>`), so the
   first paint waits for nothing but the page itself. On a fast network the
   app's JavaScript otherwise arrives before the stylesheet and runs before
