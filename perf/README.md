@@ -48,11 +48,17 @@ What the patch does
   never existed; the fleet count already came from `/vehicles`).
 - `--color-dim` on light surfaces is `#6b615a` (4.5:1 contrast).
 - On touch devices only (`hover:none` + `pointer:coarse`): the "live" dot
-  pulses by opacity instead of box-shadow, the moving border glow and the
-  story-section rain are off, scroll-in reveals rise without the blur, and
-  the animated dots canvas stays idle (the same dots are a static CSS
-  background). These are every-frame main-thread animations that delay
-  tap response (INP) on phones; desktop is unchanged.
+  pulses by opacity instead of box-shadow, the moving border glow, the
+  story-section rain and the riding-bike bob (an SVG transform, which
+  phones cannot run on the GPU) are off, scroll-in reveals rise without the
+  blur, and the animated dots canvas draws at 30 fps. These are every-frame
+  main-thread animations that delay tap response (INP) on phones; desktop
+  is unchanged.
+- The "How it works" connector beams only mount at the `lg` breakpoint
+  (64rem) and wider, following resizes (they are CSS-hidden below that,
+  but each one animated its gradient forever through Framer Motion's
+  JavaScript frame loop), and GSAP ScrollTrigger's
+  `_rafBugFix` frame pump only runs in Firefox, the browser it exists for.
 
 Measuring
 

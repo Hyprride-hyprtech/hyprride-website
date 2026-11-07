@@ -40,16 +40,17 @@ html.splash-out .splash-screen{z-index:80;pointer-events:none;align-content:cent
 .splash-mark>img{animation-duration:.6s}.splash-word>span{animation-duration:.5s;animation-delay:calc(var(--li) * 30ms + .12s)}.splash-tag{animation-duration:.5s;animation-delay:.3s}
 html.play [data-intro]{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--i,0) * .07s)}html.play [data-intro-split] .w>span{animation-duration:.8s;animation-delay:calc(var(--intro-base) + var(--wi,0) * 50ms)}
 html[data-theme=light]{--color-dim:#6b615a}
-@media (hover:none) and (pointer:coarse){.live-dot{animation:hr-live 2s ease-in-out infinite;box-shadow:none}@keyframes hr-live{50%{opacity:.45}}.border-beam{animation:none;display:none}.moment-rain{animation:none}html.anim [data-reveal]{transition:opacity 1s var(--ease-expo), transform 1.1s var(--ease-expo)}html.anim [data-reveal]:not(.in){filter:none}}
+@media (hover:none) and (pointer:coarse){.live-dot{animation:hr-live 2s ease-in-out infinite;box-shadow:none}@keyframes hr-live{50%{opacity:.45}}.border-beam{animation:none;display:none}.moment-rain{animation:none}html.anim .moment-ride{animation:none}html.anim [data-reveal]{transition:opacity 1s var(--ease-expo), transform 1.1s var(--ease-expo)}html.anim [data-reveal]:not(.in){filter:none}}
 `;
 let c = read(css);
 
-// touch devices: the animated dots canvas stops drawing (the same dots are
-// a static CSS background underneath); every-frame main-thread work hurts
-// tap response on phones
+// touch devices: the animated dots canvas draws every other frame (30 fps);
+// its per-frame drawing is the largest script cost on the first screen
 const dotsChunk = '_next/static/chunks/3hxig_1t9br5a.js';
 let dots = read(dotsChunk);
-dots = edit(dotsChunk, dots, 'dots canvas idle on touch devices', 'let e=n.current,t=e?.getContext("2d");if(!e||!t)return;', 'let e=n.current;if(!e||matchMedia("(hover:none) and (pointer:coarse)").matches)return;let t=e.getContext("2d");if(!t)return;');
+dots = edit(dotsChunk, dots, 'dots canvas: undo the touch-device stop', 'let e=n.current;if(!e||matchMedia("(hover:none) and (pointer:coarse)").matches)return;let t=e.getContext("2d");if(!t)return;', 'let e=n.current,t=e?.getContext("2d");if(!e||!t)return;');
+dots = edit(dotsChunk, dots, 'dots canvas 30 fps on touch devices', 'let e=n.current,t=e?.getContext("2d");if(!e||!t)return;', 'let e=n.current,t=e?.getContext("2d");if(!e||!t)return;let hrC=matchMedia("(hover:none) and (pointer:coarse)").matches,hrO=0;');
+dots = edit(dotsChunk, dots, 'dots canvas skips alternate frames', 'R=e=>{if(M=0,!F)return;', 'R=e=>{if(M=0,!F)return;if(hrC&&(hrO^=1)){M=requestAnimationFrame(R);return}');
 save(dotsChunk, dots);
 const blockStart = c.indexOf('\nhtml.wait #book[data-intro]{opacity:1}');
 const base = blockStart >= 0 ? c.slice(0, blockStart) : c;
@@ -216,9 +217,26 @@ let p = read(pageChunk);
 p = edit(pageChunk, p, 'skip stats when unset', 'async function L(e){let t=await fetch(E.SITE.statsApi,', 'async function L(e){if(!E.SITE.statsApi)return null;let t=await fetch(E.SITE.statsApi,');
 p = edit(pageChunk, p, 'connector beams hidden from screen readers', '("svg",{fill:"none",width:S.width,height:S.height,xmlns:"http://www.w3.org/2000/svg",className:(0,r.cn)("pointer-events-none absolute top-0 left-0 transform-gpu stroke-2",e),',
   '("svg",{"aria-hidden":!0,fill:"none",width:S.width,height:S.height,xmlns:"http://www.w3.org/2000/svg",className:(0,r.cn)("pointer-events-none absolute top-0 left-0 transform-gpu stroke-2",e),');
+// the beams are CSS-hidden below the lg breakpoint (64rem) but each one
+// animates its gradient forever through Framer Motion's JavaScript frame
+// loop; mount them only at lg and up, following resizes (server snapshot
+// false keeps hydration identical to the exported HTML)
+p = edit(pageChunk, p, 'connector beams follow the lg breakpoint', 'r=(0,l.useAnimated)();return(0,t.jsx)("section",{id:"how"',
+  'r=(0,l.useAnimated)(),hrLg=(0,s.useSyncExternalStore)(e=>{let t=matchMedia("(min-width:64rem)");return t.addEventListener("change",e),()=>t.removeEventListener("change",e)},()=>matchMedia("(min-width:64rem)").matches,()=>!1);return(0,t.jsx)("section",{id:"how"');
+p = edit(pageChunk, p, 'connector beams gate (from the 1024px version)', 'r&&matchMedia("(min-width:1024px)").matches?[0,1,2].map(s=>(0,t.jsx)(a,{containerRef:e', 'r&&hrLg?[0,1,2].map(s=>(0,t.jsx)(a,{containerRef:e');
+p = edit(pageChunk, p, 'connector beams only at lg', 'r?[0,1,2].map(s=>(0,t.jsx)(a,{containerRef:e', 'r&&hrLg?[0,1,2].map(s=>(0,t.jsx)(a,{containerRef:e');
 p = edit(pageChunk, p, 'fleet cards responsive', '("img",{src:i.img,alt:i.alt,loading:"lazy",width:960,height:720,',
   '("img",{src:i.img,srcSet:i.img.replace(".webp","-540.webp")+" 540w, "+i.img.replace(".webp","-810.webp")+" 810w, "+i.img+" 960w",sizes:"(min-width:768px) 300px, 66vw",alt:i.alt,loading:"lazy",width:960,height:720,');
 save(pageChunk, p);
+
+// GSAP ScrollTrigger's _rafBugFix requests a frame every frame for as long
+// as ScrollTrigger is enabled ("in some browsers (like Firefox), screen
+// repaints weren't consistent unless we had SOMETHING queued up"); elsewhere
+// it only keeps the main thread from ever going idle
+const mainChunk = '_next/static/chunks/0uolmjm0-hk14.js';
+let mc = read(mainChunk);
+mc = edit(mainChunk, mc, 'ScrollTrigger frame pump only in Firefox', 'function t(){return n2&&requestAnimationFrame(t)}()', 'function t(){return n2&&/Firefox\\//.test(navigator.userAgent)&&requestAnimationFrame(t)}()');
+save(mainChunk, mc);
 
 for (const f of ['scenes/jupiter-1024.webp', 'brand/hr-mark-648.webp', 'fleet/jupiter-110-540.webp']) {
   if (!existsSync(join(root, f))) log.push(`  MISSING ${f} — run perf/images.mjs`);
