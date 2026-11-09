@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Moved — HYPRRIDE</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://hyprride.com/booking.html">
+<meta http-equiv="refresh" content="0; url=/booking.html">
+<script>
+// Old site links were /book?bike=tvs-ntorq-125 etc. Send them to the booking
+// page with the bike it now knows (booking.js slugs), keeping any #hash.
+(function () {
+  var map = {
+    'tvs-jupiter-110': 'jupiter-110', 'tvs-jupiter-125': 'jupiter-125',
+    'tvs-ntorq-125': 'ntorq-125', 'tvs-raider-125': 'raider-125',
+    'yamaha-rayzr-125': 'rayzr-125', 'tvs-apache-rtr-160': 'apache-160'
+  };
+  var old = new URLSearchParams(location.search).get('bike') || '';
+  var bike = map[old] || old.replace(/^(tvs|yamaha)-/, '').replace(/^apache-rtr-/, 'apache-');
+  location.replace('/booking.html' + (bike ? '?bike=' + encodeURIComponent(bike) : '') + location.hash);
+})();
+</script>
+</head>
+<body style="background:#080606;color:#f6f1ec;font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0">
+<p>This page has moved to <a href="/booking.html" style="color:#ff5a4f">hyprride.com/booking.html</a>.</p>
+</body>
+</html>
