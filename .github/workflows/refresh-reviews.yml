@@ -1,9 +1,9 @@
 # Daily refresh of the Google rating + review count shown on hyprride.com.
 #
 # One-time setup:
-#   1. Google Cloud console: enable "Places API (New)" on a project with billing on,
-#      then create an API key restricted to that API. ~30 calls a month stays
-#      inside Google's free monthly allowance.
+#   1. Key: reuse the Hyprverse server's Google key (Azure portal > App Services >
+#      hyperverseapp > Environment variables > GOOGLE_MAPS_API_KEY). It already has
+#      Places API (New) on with billing; tested 15 Nov 2026. ~30 calls a month.
 #   2. GitHub: this repo > Settings > Secrets and variables > Actions >
 #      New repository secret, name GOOGLE_PLACES_KEY, value = that key.
 #   3. Actions tab > "Refresh Google reviews" > Run workflow, to test it.
