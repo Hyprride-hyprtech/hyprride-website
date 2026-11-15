@@ -1,0 +1,51 @@
+# Daily refresh of the Google rating + review count shown on hyprride.com.
+#
+# One-time setup:
+#   1. Google Cloud console: enable "Places API (New)" on a project with billing on,
+#      then create an API key restricted to that API. ~30 calls a month stays
+#      inside Google's free monthly allowance.
+#   2. GitHub: this repo > Settings > Secrets and variables > Actions >
+#      New repository secret, name GOOGLE_PLACES_KEY, value = that key.
+#   3. Actions tab > "Refresh Google reviews" > Run workflow, to test it.
+# Until the secret exists, runs end with a warning and change nothing.
+
+name: Refresh Google reviews
+
+on:
+  schedule:
+    - cron: "30 0 * * *" # 06:00 IST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency: refresh-reviews
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Fetch rating and count from Google
+        run: node .github/scripts/refresh-reviews.mjs
+        env:
+          GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          if git diff --quiet; then echo "No change"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Google reviews: $(node -p "require('./reviews.json').count") at $(node -p "require('./reviews.json').rating")"
+          git push
+          echo "pushed=1" >> "$GITHUB_OUTPUT"
+
+      # Pushes made with the workflow token may not start a Pages build on their own.
+      - name: Rebuild GitHub Pages
+        if: steps.commit.outputs.pushed == '1'
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
+        env:
+          GH_TOKEN: ${{ github.token }}
