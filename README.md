@@ -61,3 +61,9 @@ the copy inside the JavaScript. It needs the repository secret
     npx serve .
 
 Then open the address it prints.
+
+## The rider app's name
+
+The rider app is **Hypr Ride** (it was called HyprGrid until 20 Nov 2026). The
+home page's "For riders" card names it in three places that must agree:
+`index.html`, `index.txt` and `__next.__PAGE__.txt`.
