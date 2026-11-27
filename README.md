@@ -10,6 +10,7 @@ in this repo.
 | Path | What it is | Can it move? |
 |---|---|---|
 | `index.html`, `future.html`, `careers.html`, `terms.html`, `privacy.html` | The pages. `/future` is served from `future.html`. | No, the file name is the URL |
+| `app-terms.html`, `app-privacy.html`, `refunds.html`, `shipping.html`, `contact.html`, `delete-account.html` (+ `.txt`) | Policy pages for Razorpay and the app stores, built from `terms.html` by a script (27 Nov 2026). They have no page-data folder, and every link to them is a plain link. | No, the file name is the URL |
 | `index.txt`, `future.txt`, … and the `future/`, `careers/`, `terms/`, `privacy/` folders | Page data the app loads when you click between pages | No, the app asks for these exact paths |
 | `__next.*.txt` | Home page data for the same purpose | No |
 | `_next/` | The app's JavaScript, styles and fonts | No |
